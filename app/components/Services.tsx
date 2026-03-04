@@ -41,17 +41,28 @@ export default function Services() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const items = el.querySelectorAll<HTMLElement>("[data-animate]");
+    items.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(24px)";
+      item.style.transition = "opacity 0.9s ease-out, transform 0.9s ease-out";
+    });
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.querySelectorAll(".section-hidden").forEach((child, i) => {
-            (child as HTMLElement).style.transitionDelay = `${i * 80}ms`;
-            child.classList.add("section-visible");
+          items.forEach((item) => {
+            const delay = parseInt(item.dataset.delay ?? "0");
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0)";
+            }, delay);
           });
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0, rootMargin: "0px 0px -80px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -61,37 +72,53 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="py-24 md:py-36 bg-[#0D0D0D]"
+      className="py-16 md:py-24 bg-[#0D0D0D]"
       style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-20">
         {/* Section label */}
-        <p className="section-hidden gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <p
+          data-animate
+          data-delay="0"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+        >
           How We Help
         </p>
 
         {/* Heading */}
-        <h2 className="section-hidden text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4">
+        <h2
+          data-animate
+          data-delay="100"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4"
+        >
           Here&apos;s What We Do Best
         </h2>
 
         {/* Gradient accent line */}
-        <div className="section-hidden gradient-line h-[1px] w-12 mb-14" />
+        <div
+          data-animate
+          data-delay="200"
+          className="gradient-line h-[1px] w-12 mb-10"
+        />
 
         {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {services.map((service, index) => (
             <div
               key={service.number}
-              className="section-hidden service-card bg-[#141414] border border-white/8 rounded-2xl p-8"
+              data-animate
+              data-delay={String(300 + index * 100)}
+              className={`service-card bg-[#141414] border border-white/8 rounded-2xl p-7 ${
+                index === 4 ? "md:col-span-2 md:max-w-[calc(50%-10px)] md:mx-auto md:w-full" : ""
+              }`}
             >
               {/* Number */}
-              <span className="gradient-text text-xs font-bold tracking-widest uppercase mb-4 block">
+              <span className="gradient-text text-xs font-bold tracking-widest uppercase mb-3 block">
                 {service.number}
               </span>
 
               {/* Name */}
-              <h3 className="text-xl font-semibold text-[#F5F5F0] mb-3">
+              <h3 className="text-xl font-semibold text-[#F5F5F0] mb-2">
                 {service.name}
               </h3>
 

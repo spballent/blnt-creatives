@@ -90,17 +90,7 @@ body {
   opacity: 0;
 }
 
-/* Scroll-triggered fade in */
-.section-hidden {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.section-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Scroll-triggered fade in — handled via inline styles + data-animate in each component */
 
 /* Pulsing dot */
 @keyframes pulse-dot {

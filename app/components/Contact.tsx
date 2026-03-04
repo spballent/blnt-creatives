@@ -22,17 +22,28 @@ export default function Contact() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const items = el.querySelectorAll<HTMLElement>("[data-animate]");
+    items.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(24px)";
+      item.style.transition = "opacity 0.9s ease-out, transform 0.9s ease-out";
+    });
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.querySelectorAll(".section-hidden").forEach((child, i) => {
-            (child as HTMLElement).style.transitionDelay = `${i * 80}ms`;
-            child.classList.add("section-visible");
+          items.forEach((item) => {
+            const delay = parseInt(item.dataset.delay ?? "0");
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0)";
+            }, delay);
           });
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0, rootMargin: "0px 0px -80px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -77,26 +88,42 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-24 md:py-36 bg-[#0D0D0D]"
+      className="py-16 md:py-24 bg-[#0D0D0D]"
       style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-20">
         <div className="max-w-2xl">
           {/* Section label */}
-          <p className="section-hidden gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+          <p
+            data-animate
+            data-delay="0"
+            className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+          >
             Let&apos;s Talk
           </p>
 
           {/* Heading */}
-          <h2 className="section-hidden text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4">
+          <h2
+            data-animate
+            data-delay="100"
+            className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4"
+          >
             Got Something on<br />Your Mind?
           </h2>
 
           {/* Gradient accent line */}
-          <div className="section-hidden gradient-line h-[1px] w-12 mb-6" />
+          <div
+            data-animate
+            data-delay="200"
+            className="gradient-line h-[1px] w-12 mb-6"
+          />
 
           {/* Subheading */}
-          <p className="section-hidden text-[#888880] text-base md:text-lg leading-relaxed mb-12">
+          <p
+            data-animate
+            data-delay="300"
+            className="text-[#888880] text-base md:text-lg leading-relaxed mb-10"
+          >
             Whether you have a specific project in mind or just a problem
             you&apos;re not sure how to solve yet, reach out. We&apos;re pretty good at
             figuring things out together.
@@ -104,7 +131,7 @@ export default function Contact() {
 
           {/* Success message */}
           {status === "success" && (
-            <div className="section-hidden mb-8 p-5 rounded-xl bg-emerald-900/20 border border-emerald-500/20 text-emerald-400 text-sm leading-relaxed">
+            <div className="mb-8 p-5 rounded-xl bg-emerald-900/20 border border-emerald-500/20 text-emerald-400 text-sm leading-relaxed">
               Got it. We&apos;ll be in touch soon. Thanks for reaching out.
             </div>
           )}
@@ -117,7 +144,12 @@ export default function Contact() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="section-hidden space-y-5">
+          <form
+            data-animate
+            data-delay="400"
+            onSubmit={handleSubmit}
+            className="space-y-5"
+          >
             {/* Name */}
             <div>
               <label htmlFor="name" className={labelClass}>
@@ -180,7 +212,14 @@ export default function Contact() {
                 value={formData.service}
                 onChange={handleChange}
                 className={`${inputClass} appearance-none cursor-pointer`}
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center", backgroundSize: "16px", paddingRight: "40px" }}
+                style={{
+                  backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 14px center",
+                  backgroundSize: "16px",
+                  paddingRight: "40px",
+                }}
               >
                 <option value="" disabled>
                   Select an option
@@ -197,7 +236,8 @@ export default function Contact() {
             {/* Message */}
             <div>
               <label htmlFor="message" className={labelClass}>
-                Tell us about your project or problem <span className="text-[#FF6B35]">*</span>
+                Tell us about your project or problem{" "}
+                <span className="text-[#FF6B35]">*</span>
               </label>
               <textarea
                 id="message"
@@ -222,7 +262,14 @@ export default function Contact() {
                 value={formData.source}
                 onChange={handleChange}
                 className={`${inputClass} appearance-none cursor-pointer`}
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center", backgroundSize: "16px", paddingRight: "40px" }}
+                style={{
+                  backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 14px center",
+                  backgroundSize: "16px",
+                  paddingRight: "40px",
+                }}
               >
                 <option value="">Select an option (optional)</option>
                 <option value="Instagram or Social Media">Instagram or Social Media</option>
