@@ -1,35 +1,85 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/* ── SVG icons ─────────────────────────────────────────────────── */
+const BrandIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M24 4L44 24L24 44L4 24Z" />
+    <path d="M24 14L34 24L24 34L14 24Z" />
+    <circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const MarketingIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17H15L31 9V39L15 31H7V17Z" />
+    <line x1="15" y1="31" x2="15" y2="43" />
+    <path d="M35 16C37.5 18.5 39 21.1 39 24C39 26.9 37.5 29.5 35 32" />
+  </svg>
+);
+
+const ConsultingIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="24" cy="24" r="19" />
+    <path d="M24 5V12M24 36V43M5 24H12M36 24H43" />
+    <path d="M31 17L27 25L19 31L23 23L31 17Z" />
+  </svg>
+);
+
+const WorkflowIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4"  y="7"  width="13" height="10" rx="2" />
+    <rect x="31" y="7"  width="13" height="10" rx="2" />
+    <rect x="17" y="31" width="14" height="10" rx="2" />
+    <path d="M17 12H31" />
+    <path d="M10 17V27C10 29.2 11.8 31 14 31H17" />
+    <path d="M38 17V27C38 29.2 36.2 31 34 31H31" />
+  </svg>
+);
+
+const CommunityIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="17" cy="19" r="10" />
+    <circle cx="31" cy="19" r="10" />
+    <circle cx="24" cy="32" r="10" />
+  </svg>
+);
+
+/* ── Service data ───────────────────────────────────────────────── */
 const services = [
   {
-    number: "01",
     name: "Brand Design",
+    dotColor: "#E8402A",
+    Icon: BrandIcon,
     description:
       "Your brand is usually the first impression so we make sure it's a good one. We help you build a visual identity that feels right, looks sharp, and actually reflects who you are.",
   },
   {
-    number: "02",
     name: "Marketing",
+    dotColor: "#F0821A",
+    Icon: MarketingIcon,
     description:
       "Good marketing doesn't have to feel pushy. We help you figure out what to say, who to say it to, and how to say it in a way that actually lands.",
   },
   {
-    number: "03",
     name: "Consulting",
+    dotColor: "#E8A020",
+    Icon: ConsultingIcon,
     description:
       "Sometimes you just need someone to look at things with fresh eyes. We dig into what's working and what isn't, then help you figure out the clearest path forward.",
   },
   {
-    number: "04",
     name: "Workflow Optimization",
+    dotColor: "#E8402A",
+    Icon: WorkflowIcon,
     description:
       "If your team is spending more time managing the process than doing the work, something's off. We come in, find where things are getting stuck, and help you build something that actually flows.",
   },
   {
-    number: "05",
     name: "Community Management",
+    dotColor: "#F0821A",
+    Icon: CommunityIcon,
     description:
       "A great community doesn't just happen. It gets nurtured. We help brands build, engage, and grow communities that people actually want to be part of through real connection, great content, and the right incentives.",
   },
@@ -37,6 +87,8 @@ const services = [
 
 export default function Services() {
   const ref = useRef<HTMLElement>(null);
+  const [activeService, setActiveService] = useState("Brand Design");
+  const [descKey, setDescKey] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -68,19 +120,29 @@ export default function Services() {
     return () => observer.disconnect();
   }, []);
 
+  const handleHover = (name: string) => {
+    if (name !== activeService) {
+      setActiveService(name);
+      setDescKey((k) => k + 1);
+    }
+  };
+
+  const activeDesc = services.find((s) => s.name === activeService)?.description ?? "";
+
   return (
     <section
       id="services"
       ref={ref}
-      className="py-16 md:py-24 bg-[#0D0D0D]"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      className="py-20 md:py-[120px] bg-white"
+      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-20">
+      <div className="max-w-[1100px] mx-auto px-6 md:px-20">
+
         {/* Section label */}
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
         >
           How We Help
         </p>
@@ -89,7 +151,7 @@ export default function Services() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4"
+          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-center"
         >
           Here&apos;s What We Do Best
         </h2>
@@ -98,37 +160,75 @@ export default function Services() {
         <div
           data-animate
           data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-10"
+          className="gradient-line h-[1px] w-12 mb-14 mx-auto"
         />
 
-        {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {services.map((service, index) => (
-            <div
-              key={service.number}
-              data-animate
-              data-delay={String(300 + index * 100)}
-              className={`service-card bg-[#141414] border border-white/8 rounded-2xl p-7 ${
-                index === 4 ? "md:col-span-2 md:max-w-[calc(50%-10px)] md:mx-auto md:w-full" : ""
-              }`}
-            >
-              {/* Number */}
-              <span className="gradient-text text-xs font-bold tracking-widest uppercase mb-3 block">
-                {service.number}
-              </span>
+        {/* ── Icon grid ───────────────────────────────────────── */}
+        <div data-animate data-delay="300">
+          {/* Top row: 4 items (2 on mobile, 4 on md+) */}
+          <div className="grid grid-cols-2 md:grid-cols-4 border border-[#E8E8E8]">
+            {services.slice(0, 4).map((service) => (
+              <div
+                key={service.name}
+                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 border-r border-b border-[#E8E8E8] last:border-r-0 md:border-b-0 transition-colors duration-200 ${
+                  activeService === service.name ? "bg-[#FAFAFA]" : ""
+                }`}
+                onMouseEnter={() => handleHover(service.name)}
+              >
+                <div className="text-[#0D0D0D]">
+                  <service.Icon />
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
+                    style={{ backgroundColor: service.dotColor }}
+                  />
+                  <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
+                    {service.name}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
 
-              {/* Name */}
-              <h3 className="text-xl font-semibold text-[#F5F5F0] mb-2">
-                {service.name}
-              </h3>
-
-              {/* Description */}
-              <p className="text-[#888880] text-sm md:text-base leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
+          {/* Bottom row: 5th card centered */}
+          <div className="flex justify-center border-l border-r border-b border-[#E8E8E8]">
+            {services.slice(4).map((service) => (
+              <div
+                key={service.name}
+                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 w-full md:w-1/4 transition-colors duration-200 ${
+                  activeService === service.name ? "bg-[#FAFAFA]" : ""
+                }`}
+                onMouseEnter={() => handleHover(service.name)}
+              >
+                <div className="text-[#0D0D0D]">
+                  <service.Icon />
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
+                    style={{ backgroundColor: service.dotColor }}
+                  />
+                  <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
+                    {service.name}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* ── Hover description panel ────────────────────────── */}
+        <div data-animate data-delay="400" className="mt-12 text-center min-h-[80px]">
+          <p
+            key={descKey}
+            className="text-[17px] text-[#555550] leading-relaxed max-w-lg mx-auto"
+            style={{ animation: "fadeInUp 0.4s ease forwards" }}
+          >
+            {activeDesc}
+          </p>
+        </div>
+
       </div>
     </section>
   );

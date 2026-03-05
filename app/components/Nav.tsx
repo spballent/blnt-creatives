@@ -4,23 +4,25 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "About", href: "#about", id: "about" },
+  { label: "About",    href: "#about",    id: "about"    },
   { label: "Services", href: "#services", id: "services" },
-  { label: "Work", href: "#work", id: "work" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Work",     href: "#work",     id: "work"     },
+  { label: "Contact",  href: "#contact",  id: "contact"  },
 ];
 
+// Sections that have a dark (#0D0D0D) background
+const DARK_SECTIONS = new Set(["about", "work"]);
+
 export default function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [isScrolled,     setIsScrolled]     = useState(false);
+  const [menuOpen,       setMenuOpen]       = useState(false);
+  const [activeSection,  setActiveSection]  = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Determine active section based on scroll position
-      const scrollY = window.scrollY + 120;
+      const scrollY = window.scrollY + 100;
       const sections = navLinks.map(({ id }) => {
         const el = document.getElementById(id);
         return { id, top: el ? el.offsetTop : Infinity };
@@ -38,6 +40,8 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isDark = DARK_SECTIONS.has(activeSection);
+
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const el = document.querySelector(href);
@@ -46,28 +50,31 @@ export default function Nav() {
 
   return (
     <>
+      {/* ── Main nav bar ─────────────────────────────────────── */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#0D0D0D]/90 backdrop-blur-md border-b border-white/5"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
+          isDark
+            ? "bg-[#0D0D0D] border-b border-white/[0.06]"
+            : "bg-white border-b border-black/[0.06]"
+        } ${isScrolled ? "shadow-sm" : ""}`}
       >
-        <div className="max-w-[1200px] mx-auto px-6 md:px-20 flex items-center justify-between h-[72px] md:h-[80px]">
-          {/* Logo */}
+        <div className="max-w-[1100px] mx-auto px-6 md:px-20 flex items-center justify-between h-[68px] md:h-[76px]">
+
+          {/* Logo — crossfades between light and dark states */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center flex-shrink-0"
             aria-label="BLNT Creatives home"
           >
             {/*
-              The PNG has ~37% transparent padding on all sides.
-              Content bounds: x=[93,164], y=[65,105] within 256×168.
-              We render at 1.6x scale (410×269) and clip to the content area (114×64).
+              PNG has ~37% transparent padding on all sides.
+              We render at 1.6× (410×269) and clip to content (114×64).
+              Light nav: filter invert(1) makes white logo appear dark.
+              Dark nav:  no filter, logo appears white.
             */}
             <div
-              className="overflow-hidden flex-shrink-0"
-              style={{ width: 126, height: 72, position: "relative" }}
+              className="overflow-hidden flex-shrink-0 transition-all duration-500"
+              style={{ width: 114, height: 64, position: "relative" }}
             >
               <div
                 style={{
@@ -76,6 +83,8 @@ export default function Nav() {
                   height: 269,
                   left: -143,
                   top: -100,
+                  transition: "filter 0.5s ease",
+                  filter: isDark ? "none" : "invert(1)",
                 }}
               >
                 <Image
@@ -90,7 +99,7 @@ export default function Nav() {
             </div>
           </button>
 
-          {/* Desktop nav */}
+          {/* Desktop links */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -98,10 +107,12 @@ export default function Nav() {
                 <li key={link.href}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className={`text-sm font-medium tracking-wide transition-all duration-200 ${
+                    className={`text-sm font-medium tracking-wide transition-all duration-300 ${
                       isActive
                         ? "gradient-text"
-                        : "text-[#888880] hover:text-[#F5F5F0]"
+                        : isDark
+                          ? "text-[#888880] hover:text-[#F5F5F0]"
+                          : "text-[#888880] hover:text-[#0D0D0D]"
                     }`}
                   >
                     {link.label}
@@ -117,46 +128,40 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span
-              className={`block h-[1.5px] bg-[#F5F5F0] transition-all duration-300 ${
-                menuOpen ? "w-5 rotate-45 translate-y-[6.5px]" : "w-6"
-              }`}
-            />
-            <span
-              className={`block h-[1.5px] bg-[#F5F5F0] transition-all duration-300 ${
-                menuOpen ? "w-0 opacity-0" : "w-6"
-              }`}
-            />
-            <span
-              className={`block h-[1.5px] bg-[#F5F5F0] transition-all duration-300 ${
-                menuOpen ? "w-5 -rotate-45 -translate-y-[6.5px]" : "w-6"
-              }`}
-            />
+            {[
+              menuOpen ? "w-5 rotate-45 translate-y-[6.5px]" : "w-6",
+              menuOpen ? "w-0 opacity-0" : "w-6",
+              menuOpen ? "w-5 -rotate-45 -translate-y-[6.5px]" : "w-6",
+            ].map((cls, i) => (
+              <span
+                key={i}
+                className={`block h-[1.5px] transition-all duration-300 ${cls} ${
+                  isDark ? "bg-[#F5F5F0]" : "bg-[#0D0D0D]"
+                }`}
+              />
+            ))}
           </button>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
+      {/* ── Mobile full-screen overlay ────────────────────────── */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0D0D0D] flex flex-col justify-center items-center gap-10 transition-all duration-300 ${
+        className={`fixed inset-0 z-[999] bg-[#0D0D0D] flex flex-col justify-center items-center gap-10 transition-all duration-300 ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        {navLinks.map((link, i) => {
-          const isActive = activeSection === link.id;
-          return (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className={`text-3xl font-semibold transition-all duration-200 ${
-                isActive ? "gradient-text" : "text-[#F5F5F0]"
-              }`}
-              style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
-            >
-              {link.label}
-            </button>
-          );
-        })}
+        {navLinks.map((link, i) => (
+          <button
+            key={link.href}
+            onClick={() => handleNavClick(link.href)}
+            className={`text-3xl font-semibold transition-all duration-200 ${
+              activeSection === link.id ? "gradient-text" : "text-[#F5F5F0]"
+            }`}
+            style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
+          >
+            {link.label}
+          </button>
+        ))}
       </div>
     </>
   );

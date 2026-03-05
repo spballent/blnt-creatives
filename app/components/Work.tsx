@@ -39,15 +39,16 @@ export default function Work() {
     <section
       id="work"
       ref={ref}
-      className="py-16 md:py-24 bg-[#0D0D0D]"
+      className="py-20 md:py-[120px] bg-[#0D0D0D]"
       style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-20">
+      <div className="max-w-[1100px] mx-auto px-6 md:px-20">
+
         {/* Section label */}
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
         >
           Early Work
         </p>
@@ -56,7 +57,7 @@ export default function Work() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-center"
         >
           We&apos;re New. Here&apos;s<br />Where We&apos;re Starting.
         </h2>
@@ -65,30 +66,30 @@ export default function Work() {
         <div
           data-animate
           data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-10"
+          className="gradient-line h-[1px] w-12 mb-14 mx-auto"
         />
 
         {/* Featured project card */}
         <div
           data-animate
           data-delay="300"
-          className="bg-[#141414] border border-white/8 rounded-2xl p-8 md:p-10 max-w-2xl"
+          className="bg-[#141414] border border-white/[0.08] rounded-2xl p-8 md:p-12 max-w-2xl mx-auto"
         >
           {/* Status badge */}
-          <div className="flex items-center gap-2 mb-5">
-            <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-400 inline-block" />
-            <span className="text-emerald-400 text-xs font-semibold tracking-widest uppercase">
+          <div className="flex items-center gap-2.5 mb-6">
+            <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-400 inline-block flex-shrink-0" />
+            <span className="text-emerald-400 text-xs font-semibold tracking-[0.15em] uppercase">
               In Progress
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl font-semibold text-[#F5F5F0] mb-3 leading-snug">
+          <h3 className="text-2xl md:text-3xl font-semibold text-[#F5F5F0] mb-4 leading-snug">
             Workflow Overhaul &amp; Digital Foundation
           </h3>
 
           {/* Description */}
-          <p className="text-[#888880] text-base leading-relaxed mb-7">
+          <p className="text-[#888880] text-[17px] leading-relaxed mb-8">
             We&apos;re currently working with a growing brand to untangle their
             internal processes and set them up for a digital product launch.
             Early days, but already making a real difference in how their team
@@ -97,24 +98,27 @@ export default function Work() {
 
           {/* Tags */}
           <div className="flex flex-wrap gap-3">
-            <span className="px-3 py-1 rounded-full border border-white/10 text-xs text-[#888880] font-medium">
-              Workflow Optimization
-            </span>
-            <span className="px-3 py-1 rounded-full border border-white/10 text-xs text-[#888880] font-medium">
-              Digital Product
-            </span>
+            {["Workflow Optimization", "Digital Product"].map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-1.5 rounded-full border border-white/10 text-xs text-[#888880] font-medium tracking-wide"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Coming soon note */}
+        {/* Coming soon */}
         <p
           data-animate
           data-delay="400"
-          className="mt-8 text-[#888880] text-sm md:text-base"
+          className="mt-10 text-[#555550] text-[17px] text-center"
         >
           More to share soon. We&apos;re heads down doing good work and the case
           studies are coming.
         </p>
+
       </div>
     </section>
   );

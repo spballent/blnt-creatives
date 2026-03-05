@@ -3,20 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 
 const inputClass =
-  "w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F0] text-sm placeholder:text-[#555550] focus:outline-none focus:border-white/25 transition-colors duration-200";
+  "w-full bg-[#F2F2F0] border border-[#DDDDD8] rounded-xl px-4 py-3 text-[#0D0D0D] text-[17px] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#0D0D0D] transition-colors duration-200";
 
-const labelClass = "block text-sm font-medium text-[#888880] mb-2";
+const labelClass = "block text-sm font-medium text-[#444440] mb-2";
+
+const chevron =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")";
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-    source: "",
+    name: "", email: "", company: "", service: "", message: "", source: "",
   });
 
   useEffect(() => {
@@ -51,28 +49,17 @@ export default function Contact() {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  ) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-
     try {
       const res = await fetch("https://formspree.io/f/mykdrord", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          service: formData.service,
-          message: formData.message,
-          source: formData.source,
-        }),
+        body: JSON.stringify(formData),
       });
-
       if (res.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", company: "", service: "", message: "", source: "" });
@@ -88,99 +75,87 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-16 md:py-24 bg-[#0D0D0D]"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      className="py-20 md:py-[120px] bg-white"
+      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-20">
-        <div className="max-w-2xl">
-          {/* Section label */}
-          <p
-            data-animate
-            data-delay="0"
-            className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-3"
-          >
-            Let&apos;s Talk
-          </p>
+      <div className="max-w-[1100px] mx-auto px-6 md:px-20">
 
-          {/* Heading */}
-          <h2
-            data-animate
-            data-delay="100"
-            className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-4"
-          >
-            Got Something on<br />Your Mind?
-          </h2>
+        {/* Section label */}
+        <p
+          data-animate
+          data-delay="0"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
+        >
+          Let&apos;s Talk
+        </p>
 
-          {/* Gradient accent line */}
-          <div
-            data-animate
-            data-delay="200"
-            className="gradient-line h-[1px] w-12 mb-6"
-          />
+        {/* Heading */}
+        <h2
+          data-animate
+          data-delay="100"
+          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-center"
+        >
+          Got Something on Your Mind?
+        </h2>
 
-          {/* Subheading */}
-          <p
-            data-animate
-            data-delay="300"
-            className="text-[#888880] text-base md:text-lg leading-relaxed mb-10"
-          >
-            Whether you have a specific project in mind or just a problem
-            you&apos;re not sure how to solve yet, reach out. We&apos;re pretty good at
-            figuring things out together.
-          </p>
+        {/* Gradient accent line */}
+        <div
+          data-animate
+          data-delay="200"
+          className="gradient-line h-[1px] w-12 mb-6 mx-auto"
+        />
 
-          {/* Success message */}
+        {/* Subheading */}
+        <p
+          data-animate
+          data-delay="300"
+          className="text-[#555550] text-[17px] leading-relaxed mb-12 text-center max-w-xl mx-auto"
+        >
+          Whether you have a specific project in mind or just a problem
+          you&apos;re not sure how to solve yet, reach out. We&apos;re pretty
+          good at figuring things out together.
+        </p>
+
+        {/* Form */}
+        <div data-animate data-delay="400" className="max-w-[600px] mx-auto">
+
+          {/* Success */}
           {status === "success" && (
-            <div className="mb-8 p-5 rounded-xl bg-emerald-900/20 border border-emerald-500/20 text-emerald-400 text-sm leading-relaxed">
+            <div className="mb-8 p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-[17px] leading-relaxed">
               Got it. We&apos;ll be in touch soon. Thanks for reaching out.
             </div>
           )}
 
-          {/* Error message */}
+          {/* Error */}
           {status === "error" && (
-            <div className="mb-8 p-5 rounded-xl bg-red-900/20 border border-red-500/20 text-red-400 text-sm">
-              Something went wrong. Please try again or email us directly.
+            <div className="mb-8 p-5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+              Something went wrong. Please try again.
             </div>
           )}
 
-          {/* Form */}
-          <form
-            data-animate
-            data-delay="400"
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="space-y-5">
+
             {/* Name */}
             <div>
               <label htmlFor="name" className={labelClass}>
-                Name <span className="text-[#FF6B35]">*</span>
+                Name <span className="text-[#E8402A]">*</span>
               </label>
               <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                className={inputClass}
+                id="name" name="name" type="text" required
+                value={formData.name} onChange={handleChange}
+                placeholder="Your name" className={inputClass}
               />
             </div>
 
             {/* Email */}
             <div>
               <label htmlFor="email" className={labelClass}>
-                Email <span className="text-[#FF6B35]">*</span>
+                Email <span className="text-[#E8402A]">*</span>
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="you@company.com"
-                className={inputClass}
+                id="email" name="email" type="email" required
+                value={formData.email} onChange={handleChange}
+                placeholder="you@company.com" className={inputClass}
               />
             </div>
 
@@ -190,40 +165,24 @@ export default function Contact() {
                 Company or Brand Name
               </label>
               <input
-                id="company"
-                name="company"
-                type="text"
-                value={formData.company}
-                onChange={handleChange}
-                placeholder="optional"
-                className={inputClass}
+                id="company" name="company" type="text"
+                value={formData.company} onChange={handleChange}
+                placeholder="optional" className={inputClass}
               />
             </div>
 
-            {/* Service dropdown */}
+            {/* Service */}
             <div>
               <label htmlFor="service" className={labelClass}>
-                What can we help you with? <span className="text-[#FF6B35]">*</span>
+                What can we help you with? <span className="text-[#E8402A]">*</span>
               </label>
               <select
-                id="service"
-                name="service"
-                required
-                value={formData.service}
-                onChange={handleChange}
+                id="service" name="service" required
+                value={formData.service} onChange={handleChange}
                 className={`${inputClass} appearance-none cursor-pointer`}
-                style={{
-                  backgroundImage:
-                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "right 14px center",
-                  backgroundSize: "16px",
-                  paddingRight: "40px",
-                }}
+                style={{ backgroundImage: chevron, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center", backgroundSize: "16px", paddingRight: "40px" }}
               >
-                <option value="" disabled>
-                  Select an option
-                </option>
+                <option value="" disabled>Select an option</option>
                 <option value="Brand Design">Brand Design</option>
                 <option value="Marketing">Marketing</option>
                 <option value="Consulting">Consulting</option>
@@ -236,40 +195,26 @@ export default function Contact() {
             {/* Message */}
             <div>
               <label htmlFor="message" className={labelClass}>
-                Tell us about your project or problem{" "}
-                <span className="text-[#FF6B35]">*</span>
+                Tell us about your project or problem <span className="text-[#E8402A]">*</span>
               </label>
               <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Share what's on your mind..."
+                id="message" name="message" required rows={5}
+                value={formData.message} onChange={handleChange}
+                placeholder="Share what's on your mind"
                 className={`${inputClass} resize-none`}
               />
             </div>
 
-            {/* Source dropdown */}
+            {/* Source */}
             <div>
               <label htmlFor="source" className={labelClass}>
                 How did you hear about us?
               </label>
               <select
-                id="source"
-                name="source"
-                value={formData.source}
-                onChange={handleChange}
+                id="source" name="source"
+                value={formData.source} onChange={handleChange}
                 className={`${inputClass} appearance-none cursor-pointer`}
-                style={{
-                  backgroundImage:
-                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "right 14px center",
-                  backgroundSize: "16px",
-                  paddingRight: "40px",
-                }}
+                style={{ backgroundImage: chevron, backgroundRepeat: "no-repeat", backgroundPosition: "right 14px center", backgroundSize: "16px", paddingRight: "40px" }}
               >
                 <option value="">Select an option (optional)</option>
                 <option value="Instagram or Social Media">Instagram or Social Media</option>
@@ -284,13 +229,15 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="gradient-btn w-full py-4 rounded-xl text-white font-semibold text-base tracking-wide disabled:opacity-60"
+                className="gradient-btn w-full py-4 rounded-xl text-white font-semibold text-[17px] tracking-wide disabled:opacity-60"
               >
-                {status === "submitting" ? "Sending..." : "Send It"}
+                {status === "submitting" ? "Sending…" : "Send It"}
               </button>
             </div>
+
           </form>
         </div>
+
       </div>
     </section>
   );

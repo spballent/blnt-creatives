@@ -7,35 +7,39 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-[#0D0D0D] noise-overlay">
-      {/* Subtle radial glow */}
+    <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden bg-white noise-overlay">
+      {/* Subtle warm radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(255,107,53,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 55%, rgba(232,64,42,0.04) 0%, transparent 70%)",
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-20 pt-32 pb-10">
-        <h1 className="animate-fade-in-up text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight text-[#F5F5F0] max-w-4xl">
-          Design That<br />Moves Brands<br />Forward
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-20 pt-28 pb-16 flex flex-col items-center">
+        {/* Headline */}
+        <h1 className="animate-fade-in-up text-[52px] sm:text-[64px] md:text-[72px] lg:text-[88px] font-bold leading-[1.05] tracking-tight text-[#0D0D0D] max-w-4xl">
+          We Figure Out What&apos;s Not Working.
+          <br className="hidden sm:block" /> Then We Fix It.
         </h1>
 
-        {/* Gradient accent line — sits directly under the headline */}
-        <div className="animate-fade-in-up-delay-1 gradient-line h-[2px] w-20 mt-6 mb-8" />
+        {/* Centered gradient accent line */}
+        <div className="animate-fade-in-up-delay-1 gradient-line h-[2px] w-20 mt-7 mb-8" />
 
-        <p className="animate-fade-in-up-delay-1 text-lg md:text-xl text-[#888880] max-w-2xl leading-relaxed">
-          BLNT Creatives is a small creative studio with a big toolkit. We
-          partner with brands to solve problems with thoughtful, creative
-          solutions that help them grow. From identity and design to systems
-          and strategy, we help good ideas move forward.
+        {/* Subheading */}
+        <p className="animate-fade-in-up-delay-1 text-[17px] md:text-[19px] text-[#555550] max-w-xl leading-relaxed">
+          BLNT Creatives is a small creative agency with a big toolkit.
+          We work with brands to solve real problems. Whether that&apos;s
+          building their identity, fixing their workflow, or growing their
+          community.
         </p>
 
-        <div className="animate-fade-in-up-delay-2 mt-8">
+        {/* CTA */}
+        <div className="animate-fade-in-up-delay-2 mt-10">
           <button
             onClick={handleContactScroll}
-            className="gradient-btn inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base tracking-wide"
+            className="gradient-btn inline-flex items-center gap-2 px-9 py-4 rounded-full text-white font-semibold text-base tracking-wide shadow-md"
           >
             Let&apos;s Talk
             <svg
@@ -55,10 +59,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
+      {/* Bottom fade to next section (dark) */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, #0D0D0D)" }}
+        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.6))" }}
       />
     </section>
   );

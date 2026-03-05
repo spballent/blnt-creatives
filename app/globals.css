@@ -5,11 +5,9 @@
 }
 
 :root {
-  --color-bg: #0D0D0D;
-  --color-white: #F5F5F0;
-  --color-muted: #888880;
-  --gradient-from: #FF6B35;
-  --gradient-to: #FF3CAC;
+  --gradient-from: #E8402A;
+  --gradient-mid: #F0821A;
+  --gradient-to: #E8A020;
 }
 
 html {
@@ -17,12 +15,13 @@ html {
 }
 
 body {
-  background-color: #0D0D0D;
-  color: #F5F5F0;
+  background-color: #ffffff;
+  color: #0D0D0D;
   font-family: var(--font-dm-sans), sans-serif;
+  font-size: 17px;
 }
 
-/* Grain/noise texture overlay */
+/* ─── Grain / noise texture ─────────────────────────────────── */
 .noise-overlay::before {
   content: "";
   position: absolute;
@@ -30,102 +29,77 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;
-  opacity: 0.035;
+  opacity: 0.04;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
-/* Gradient text utility */
+/* ─── Gradient utilities ─────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(90deg, #FF6B35, #FF3CAC);
+  background: linear-gradient(90deg, #E8402A 0%, #F0821A 50%, #E8A020 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gradient line */
 .gradient-line {
-  background: linear-gradient(90deg, #FF6B35, #FF3CAC);
+  background: linear-gradient(90deg, #E8402A 0%, #F0821A 50%, #E8A020 100%);
 }
 
-/* Gradient button */
 .gradient-btn {
-  background: linear-gradient(90deg, #FF6B35, #FF3CAC);
+  background: linear-gradient(90deg, #E8402A 0%, #F0821A 50%, #E8A020 100%);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .gradient-btn:hover {
-  opacity: 0.9;
+  opacity: 0.88;
   transform: translateY(-1px);
 }
 
-/* Section fade-in animation */
+/* ─── Hero fade-in animations ────────────────────────────────── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.7s ease forwards;
+  animation: fadeInUp 0.8s ease forwards;
 }
-
 .animate-fade-in-up-delay-1 {
-  animation: fadeInUp 0.7s ease 0.15s forwards;
+  animation: fadeInUp 0.8s ease 0.18s forwards;
   opacity: 0;
 }
-
 .animate-fade-in-up-delay-2 {
-  animation: fadeInUp 0.7s ease 0.3s forwards;
+  animation: fadeInUp 0.8s ease 0.34s forwards;
   opacity: 0;
 }
-
 .animate-fade-in-up-delay-3 {
-  animation: fadeInUp 0.7s ease 0.45s forwards;
+  animation: fadeInUp 0.8s ease 0.5s forwards;
   opacity: 0;
 }
 
-/* Scroll-triggered fade in — handled via inline styles + data-animate in each component */
-
-/* Pulsing dot */
+/* ─── Pulsing dot ────────────────────────────────────────────── */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
 }
-
 .pulse-dot {
-  animation: pulse-dot 1.5s ease-in-out infinite;
+  animation: pulse-dot 1.8s ease-in-out infinite;
 }
 
-/* Service card hover */
-.service-card {
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ─── Service icon card ──────────────────────────────────────── */
+.service-icon-card {
+  transition: transform 0.25s ease;
+  cursor: pointer;
+}
+.service-icon-card:hover {
+  transform: translateY(-5px);
 }
 
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #FF6B35, #FF3CAC);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  border-radius: 2px 2px 0 0;
+@keyframes pulse-accent-dot {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.6); opacity: 0.5; }
 }
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.service-card:hover::before {
-  opacity: 1;
+.service-icon-card:hover .accent-dot {
+  animation: pulse-accent-dot 0.7s ease-in-out infinite;
 }
