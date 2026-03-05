@@ -64,42 +64,36 @@ const PackageIcon = () => (
 const services = [
   {
     name: "Brand Design",
-    dotColor: "#E8402A",
     Icon: BrandIcon,
     description:
       "Your brand is usually the first impression so we make sure it's a good one. We help you build a visual identity that feels right, looks sharp, and actually reflects who you are.",
   },
   {
     name: "Marketing",
-    dotColor: "#F0821A",
     Icon: MarketingIcon,
     description:
       "Good marketing doesn't have to feel pushy. We help you figure out what to say, who to say it to, and how to say it in a way that actually lands.",
   },
   {
     name: "Consulting",
-    dotColor: "#E8A020",
     Icon: ConsultingIcon,
     description:
       "Sometimes you just need someone to look at things with fresh eyes. We dig into what's working and what isn't, then help you figure out the clearest path forward.",
   },
   {
     name: "Workflow Optimization",
-    dotColor: "#E8402A",
     Icon: WorkflowIcon,
     description:
       "If your team is spending more time managing the process than doing the work, something's off. We come in, find where things are getting stuck, and help you build something that actually flows.",
   },
   {
     name: "Community Management",
-    dotColor: "#F0821A",
     Icon: CommunityIcon,
     description:
       "A great community doesn't just happen. It gets nurtured. We help brands build, engage, and grow communities that people actually want to be part of through real connection, great content, and the right incentives.",
   },
   {
     name: "Package Design",
-    dotColor: "#E8A020",
     Icon: PackageIcon,
     description:
       "Good packaging does more than protect a product — it sells it. We design packaging that gets noticed, tells your brand story at a glance, and makes people feel something the moment they see it.",
@@ -209,7 +203,10 @@ export default function Services() {
               <div className="flex items-center gap-2">
                 <span
                   className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
-                  style={{ backgroundColor: service.dotColor }}
+                  style={{
+                    backgroundColor: activeService === service.name ? "#E8402A" : "#555555",
+                    transition: "background-color 200ms ease",
+                  }}
                 />
                 <span className="text-[14px] font-semibold text-[#F5F5F0] leading-snug">
                   {service.name}
