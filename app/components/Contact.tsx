@@ -84,7 +84,7 @@ export default function Contact() {
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
         >
           Let&apos;s Talk
         </p>
@@ -93,7 +93,7 @@ export default function Contact() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-balance"
         >
           Got Something on Your Mind?
         </h2>
@@ -102,14 +102,14 @@ export default function Contact() {
         <div
           data-animate
           data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-6 mx-auto"
+          className="gradient-line h-[1px] w-12 mb-6"
         />
 
         {/* Subheading */}
         <p
           data-animate
           data-delay="300"
-          className="text-[#888880] text-[17px] leading-relaxed mb-12 text-center max-w-xl mx-auto"
+          className="text-[#888880] text-[17px] leading-relaxed mb-12 max-w-xl"
         >
           Whether you have a specific project in mind or just a problem
           you&apos;re not sure how to solve yet, reach out. We&apos;re pretty
@@ -117,7 +117,7 @@ export default function Contact() {
         </p>
 
         {/* Form */}
-        <div data-animate data-delay="400" className="max-w-[600px] mx-auto">
+        <div data-animate data-delay="400" className="max-w-[600px]">
 
           {/* Success */}
           {status === "success" && (

@@ -48,7 +48,7 @@ export default function Work() {
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
         >
           Early Work
         </p>
@@ -57,23 +57,23 @@ export default function Work() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-balance"
         >
-          We&apos;re New. Here&apos;s<br />Where We&apos;re Starting.
+          We&apos;re New. Here&apos;s<br className="hidden md:block" /> Where We&apos;re Starting.
         </h2>
 
         {/* Gradient accent line */}
         <div
           data-animate
           data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-14 mx-auto"
+          className="gradient-line h-[1px] w-12 mb-14"
         />
 
         {/* Featured project card */}
         <div
           data-animate
           data-delay="300"
-          className="bg-[#F5F5F5] border border-black/[0.07] rounded-2xl p-8 md:p-12 max-w-2xl mx-auto"
+          className="bg-[#F5F5F5] border border-black/[0.07] rounded-2xl p-8 md:p-12 max-w-2xl"
         >
           {/* Status badge */}
           <div className="flex items-center gap-2.5 mb-6">
@@ -113,7 +113,7 @@ export default function Work() {
         <p
           data-animate
           data-delay="400"
-          className="mt-10 text-[#888880] text-[17px] text-center"
+          className="mt-10 text-[#888880] text-[17px]"
         >
           More to share soon. We&apos;re heads down doing good work and the case
           studies are coming.

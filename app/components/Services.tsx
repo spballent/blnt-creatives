@@ -157,7 +157,7 @@ export default function Services() {
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
+          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
         >
           How We Help
         </p>
@@ -166,7 +166,7 @@ export default function Services() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-balance"
         >
           Here&apos;s What We Do Best
         </h2>
@@ -175,7 +175,7 @@ export default function Services() {
         <div
           data-animate
           data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-14 mx-auto"
+          className="gradient-line h-[1px] w-12 mb-14"
         />
 
         {/* ── Icon grid: 2×3 desktop, 3×2 mobile ─────────────────
@@ -217,7 +217,7 @@ export default function Services() {
         </div>
 
         {/* ── Hover description panel ────────────────────────── */}
-        <div data-animate data-delay="400" className="mt-12 text-center min-h-[80px]">
+        <div data-animate data-delay="400" className="mt-12 min-h-[80px]">
           <p
             key={descKey}
             className="text-[17px] text-[#888880] leading-relaxed max-w-lg mx-auto"

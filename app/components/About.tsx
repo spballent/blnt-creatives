@@ -82,9 +82,9 @@ export default function About() {
             <h2
               data-animate
               data-delay="100"
-              className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5"
+              className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-balance"
             >
-              We&apos;re Problem<br />Solvers First
+              We&apos;re Problem<br className="hidden md:block" /> Solvers First
             </h2>
 
             <div
