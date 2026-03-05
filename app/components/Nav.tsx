@@ -11,8 +11,8 @@ const navLinks = [
 ];
 
 // Sections that have a dark (#0D0D0D) background
-// "" = top of page (hero), "about" and "work" are also dark
-const DARK_SECTIONS = new Set(["", "about", "work"]);
+// "" = hero (top), "services" and "contact" are also dark
+const DARK_SECTIONS = new Set(["", "services", "contact"]);
 
 export default function Nav() {
   const [isScrolled,     setIsScrolled]     = useState(false);

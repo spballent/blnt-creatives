@@ -154,8 +154,8 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="py-20 md:py-[120px] bg-white"
-      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
+      className="py-20 md:py-[120px] bg-[#0D0D0D]"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
 
@@ -172,7 +172,7 @@ export default function Services() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-center"
         >
           Here&apos;s What We Do Best
         </h2>
@@ -192,18 +192,18 @@ export default function Services() {
         <div
           data-animate
           data-delay="300"
-          className="grid grid-cols-2 md:grid-cols-3 border-t border-l border-[#E8E8E8]"
+          className="grid grid-cols-2 md:grid-cols-3 border-t border-l border-white/[0.08]"
         >
           {services.map((service) => (
             <div
               key={service.name}
-              className={`service-icon-card border-r border-b border-[#E8E8E8] bg-white p-8 flex flex-col items-center justify-center text-center gap-4 transition-colors duration-200 ${
-                activeService === service.name ? "bg-[#FAFAFA]" : ""
+              className={`service-icon-card border-r border-b border-white/[0.08] bg-[#141414] p-8 flex flex-col items-center justify-center text-center gap-4 transition-colors duration-200 ${
+                activeService === service.name ? "!bg-[#1C1C1C]" : ""
               }`}
               onMouseEnter={() => handleHover(service.name)}
               onClick={() => handleHover(service.name)}
             >
-              <div className="text-[#0D0D0D]">
+              <div className="text-[#F5F5F0]">
                 <service.Icon />
               </div>
               <div className="flex items-center gap-2">
@@ -211,7 +211,7 @@ export default function Services() {
                   className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
                   style={{ backgroundColor: service.dotColor }}
                 />
-                <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
+                <span className="text-[14px] font-semibold text-[#F5F5F0] leading-snug">
                   {service.name}
                 </span>
               </div>
@@ -223,7 +223,7 @@ export default function Services() {
         <div data-animate data-delay="400" className="mt-12 text-center min-h-[80px]">
           <p
             key={descKey}
-            className="text-[17px] text-[#555550] leading-relaxed max-w-lg mx-auto"
+            className="text-[17px] text-[#888880] leading-relaxed max-w-lg mx-auto"
             style={{ animation: "fadeInUp 0.4s ease forwards" }}
           >
             {activeDesc}

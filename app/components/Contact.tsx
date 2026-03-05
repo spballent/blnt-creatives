@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 
 const inputClass =
-  "w-full bg-[#F2F2F0] border border-[#DDDDD8] rounded-xl px-4 py-3 text-[#0D0D0D] text-[17px] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#0D0D0D] transition-colors duration-200";
+  "w-full bg-[#1A1A1A] border border-white/[0.1] rounded-xl px-4 py-3 text-[#F5F5F0] text-[17px] placeholder:text-[#555550] focus:outline-none focus:border-white/30 transition-colors duration-200";
 
-const labelClass = "block text-sm font-medium text-[#444440] mb-2";
+const labelClass = "block text-sm font-medium text-[#888880] mb-2";
 
 const chevron =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888880' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")";
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23666660' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")";
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);
@@ -75,8 +75,8 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-20 md:py-[120px] bg-white"
-      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
+      className="py-20 md:py-[120px] bg-[#0D0D0D]"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
 
@@ -93,7 +93,7 @@ export default function Contact() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-center"
         >
           Got Something on Your Mind?
         </h2>
@@ -109,7 +109,7 @@ export default function Contact() {
         <p
           data-animate
           data-delay="300"
-          className="text-[#555550] text-[17px] leading-relaxed mb-12 text-center max-w-xl mx-auto"
+          className="text-[#888880] text-[17px] leading-relaxed mb-12 text-center max-w-xl mx-auto"
         >
           Whether you have a specific project in mind or just a problem
           you&apos;re not sure how to solve yet, reach out. We&apos;re pretty
@@ -121,14 +121,14 @@ export default function Contact() {
 
           {/* Success */}
           {status === "success" && (
-            <div className="mb-8 p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-[17px] leading-relaxed">
+            <div className="mb-8 p-5 rounded-xl bg-emerald-900/30 border border-emerald-500/40 text-emerald-400 text-[17px] leading-relaxed">
               Got it. We&apos;ll be in touch soon. Thanks for reaching out.
             </div>
           )}
 
           {/* Error */}
           {status === "error" && (
-            <div className="mb-8 p-5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+            <div className="mb-8 p-5 rounded-xl bg-red-900/30 border border-red-500/40 text-red-400 text-sm">
               Something went wrong. Please try again.
             </div>
           )}

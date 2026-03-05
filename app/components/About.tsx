@@ -47,7 +47,8 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="relative py-20 md:py-[120px] bg-[#0D0D0D] overflow-hidden"
+      className="relative py-20 md:py-[120px] bg-white overflow-hidden"
+      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
@@ -65,7 +66,7 @@ export default function About() {
             <h2
               data-animate
               data-delay="100"
-              className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5"
+              className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5"
             >
               We&apos;re Problem<br />Solvers First
             </h2>
@@ -80,7 +81,7 @@ export default function About() {
               <p
                 data-animate
                 data-delay="300"
-                className="text-[#888880] text-[17px] leading-relaxed"
+                className="text-[#555550] text-[17px] leading-relaxed"
               >
                 BLNT Creatives started with a simple idea. Most business
                 problems have creative solutions, you just have to be willing
@@ -91,7 +92,7 @@ export default function About() {
               <p
                 data-animate
                 data-delay="400"
-                className="text-[#888880] text-[17px] leading-relaxed"
+                className="text-[#555550] text-[17px] leading-relaxed"
               >
                 We work closely with the people we take on. No handoffs to a
                 junior team, no cookie-cutter playbooks. Just honest work,
@@ -110,7 +111,7 @@ export default function About() {
           >
             <span
               className="text-[clamp(80px,14vw,180px)] font-bold leading-none tracking-tighter"
-              style={{ color: "rgba(255,255,255,0.035)", userSelect: "none" }}
+              style={{ color: "rgba(0,0,0,0.04)", userSelect: "none" }}
             >
               BLNT
             </span>
