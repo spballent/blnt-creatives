@@ -7,7 +7,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden bg-[#0D0D0D] noise-overlay">
+    <section className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-[#0D0D0D] noise-overlay">
 
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-20 pt-28 pb-16 flex flex-col items-center">
         {/* Headline */}
