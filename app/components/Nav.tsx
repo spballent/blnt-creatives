@@ -58,7 +58,7 @@ export default function Nav() {
             : "bg-white border-b border-black/[0.06]"
         } ${isScrolled ? "shadow-sm" : ""}`}
       >
-        <div className="max-w-[1100px] mx-auto px-6 md:px-20 flex items-center justify-between h-[68px] md:h-[76px]">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-20 flex items-center justify-between h-[72px] md:h-[82px]">
 
           {/* Logo — crossfades between light and dark states */}
           <button
@@ -68,32 +68,37 @@ export default function Nav() {
           >
             {/*
               PNG has ~37% transparent padding on all sides.
-              We render at 1.6× (410×269) and clip to content (114×64).
-              Light nav: filter invert(1) makes white logo appear dark.
-              Dark nav:  no filter, logo appears white.
+              Content bounds: x=[93,164] y=[65,105] in 256×168 natural px.
+              Rendered at 1.406× (360×236): content at x=[131,231] y=[91,148].
+              Wrapper sized with ~5px buffer each side: 110×66, offset -126,-86.
+
+              Light nav filter: invert(1) hue-rotate(180deg)
+                - invert turns white text → black  (visible on white bg)  ✓
+                - hue-rotate(180deg) corrects the orange bar back to orange  ✓
+              Dark nav: no filter — white text + orange bar on dark bg.
             */}
             <div
               className="overflow-hidden flex-shrink-0 transition-all duration-500"
-              style={{ width: 114, height: 64, position: "relative" }}
+              style={{ width: 110, height: 66, position: "relative" }}
             >
               <div
                 style={{
                   position: "absolute",
-                  width: 410,
-                  height: 269,
-                  left: -143,
-                  top: -100,
+                  width: 360,
+                  height: 236,
+                  left: -126,
+                  top: -86,
                   transition: "filter 0.5s ease",
-                  filter: isDark ? "none" : "invert(1)",
+                  filter: isDark ? "none" : "invert(1) hue-rotate(180deg)",
                 }}
               >
                 <Image
                   src="/BLNT_Logo_R2-01.png"
                   alt="BLNT Creatives"
-                  width={410}
-                  height={269}
+                  width={360}
+                  height={236}
                   priority
-                  style={{ width: 410, height: 269, display: "block", maxWidth: "none" }}
+                  style={{ width: 360, height: 236, display: "block", maxWidth: "none" }}
                 />
               </div>
             </div>

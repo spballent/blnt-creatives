@@ -46,6 +46,20 @@ const CommunityIcon = () => (
   </svg>
 );
 
+const PackageIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    {/* Front face */}
+    <rect x="5" y="20" width="28" height="23" rx="2" />
+    {/* Right face */}
+    <path d="M33 20L43 14V37L33 43" />
+    {/* Top face */}
+    <path d="M5 20L15 14H43L33 20Z" />
+    {/* Label lines on front */}
+    <line x1="10" y1="30" x2="28" y2="30" />
+    <line x1="10" y1="35" x2="21" y2="35" />
+  </svg>
+);
+
 /* ── Service data ───────────────────────────────────────────────── */
 const services = [
   {
@@ -82,6 +96,13 @@ const services = [
     Icon: CommunityIcon,
     description:
       "A great community doesn't just happen. It gets nurtured. We help brands build, engage, and grow communities that people actually want to be part of through real connection, great content, and the right incentives.",
+  },
+  {
+    name: "Package Design",
+    dotColor: "#E8A020",
+    Icon: PackageIcon,
+    description:
+      "Good packaging does more than protect a product — it sells it. We design packaging that gets noticed, tells your brand story at a glance, and makes people feel something the moment they see it.",
   },
 ];
 
@@ -163,16 +184,17 @@ export default function Services() {
           className="gradient-line h-[1px] w-12 mb-14 mx-auto"
         />
 
-        {/* ── Icon grid ───────────────────────────────────────── */}
+        {/* ── Icon grid: 2 rows of 3 ───────────────────────────── */}
         <div data-animate data-delay="300">
-          {/* Top row: 4 items (2 on mobile, 4 on md+) */}
-          <div className="grid grid-cols-2 md:grid-cols-4 border border-[#E8E8E8]">
-            {services.slice(0, 4).map((service) => (
+
+          {/* Row 1 */}
+          <div className="grid grid-cols-2 md:grid-cols-3 border border-[#E8E8E8]">
+            {services.slice(0, 3).map((service, i) => (
               <div
                 key={service.name}
-                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 border-r border-b border-[#E8E8E8] last:border-r-0 md:border-b-0 transition-colors duration-200 ${
+                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 transition-colors duration-200 ${
                   activeService === service.name ? "bg-[#FAFAFA]" : ""
-                }`}
+                } ${i < 2 ? "border-r border-[#E8E8E8]" : ""}`}
                 onMouseEnter={() => handleHover(service.name)}
               >
                 <div className="text-[#0D0D0D]">
@@ -191,14 +213,14 @@ export default function Services() {
             ))}
           </div>
 
-          {/* Bottom row: 5th card centered */}
-          <div className="flex justify-center border-l border-r border-b border-[#E8E8E8]">
-            {services.slice(4).map((service) => (
+          {/* Row 2 */}
+          <div className="grid grid-cols-2 md:grid-cols-3 border-l border-r border-b border-[#E8E8E8]">
+            {services.slice(3).map((service, i) => (
               <div
                 key={service.name}
-                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 w-full md:w-1/4 transition-colors duration-200 ${
+                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 transition-colors duration-200 ${
                   activeService === service.name ? "bg-[#FAFAFA]" : ""
-                }`}
+                } ${i < 2 ? "border-r border-[#E8E8E8]" : ""}`}
                 onMouseEnter={() => handleHover(service.name)}
               >
                 <div className="text-[#0D0D0D]">
@@ -216,6 +238,7 @@ export default function Services() {
               </div>
             ))}
           </div>
+
         </div>
 
         {/* ── Hover description panel ────────────────────────── */}

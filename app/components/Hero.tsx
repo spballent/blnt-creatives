@@ -19,9 +19,9 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-20 pt-28 pb-16 flex flex-col items-center">
         {/* Headline */}
-        <h1 className="animate-fade-in-up text-[52px] sm:text-[64px] md:text-[72px] lg:text-[88px] font-bold leading-[1.05] tracking-tight text-[#0D0D0D] max-w-4xl">
-          We Figure Out What&apos;s Not Working.
-          <br className="hidden sm:block" /> Then We Fix It.
+        <h1 className="animate-fade-in-up text-[38px] sm:text-[46px] md:text-[54px] lg:text-[62px] font-bold leading-[1.1] tracking-tight text-[#0D0D0D] max-w-3xl">
+          Creative solutions that move{" "}
+          <span className="gradient-text">brands forward</span>
         </h1>
 
         {/* Centered gradient accent line */}
@@ -29,10 +29,10 @@ export default function Hero() {
 
         {/* Subheading */}
         <p className="animate-fade-in-up-delay-1 text-[17px] md:text-[19px] text-[#555550] max-w-xl leading-relaxed">
-          BLNT Creatives is a small creative agency with a big toolkit.
-          We work with brands to solve real problems. Whether that&apos;s
-          building their identity, fixing their workflow, or growing their
-          community.
+          BLNT Creatives is a small creative studio with a big toolkit.
+          We partner with brands to solve problems with thoughtful, creative
+          solutions that help them grow. From identity and design to systems
+          and strategy, we help good ideas move forward.
         </p>
 
         {/* CTA */}
