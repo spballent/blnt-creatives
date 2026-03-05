@@ -136,8 +136,8 @@ export default function About() {
                 data-quote-text
                 className="text-[32px] lg:text-[38px] italic leading-snug text-[#0D0D0D]"
                 style={{
-                  fontFamily: "var(--font-cormorant), serif",
-                  fontWeight: 600,
+                  fontFamily: "var(--font-dm-serif), serif",
+                  fontWeight: 400,
                   opacity: 0,
                   transform: "translateX(-16px)",
                   transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
