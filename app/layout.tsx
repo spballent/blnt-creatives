@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["600"],
+  style: ["italic"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${dmSans.variable} font-sans antialiased bg-[#0D0D0D] text-[#F5F5F0]`}>
+      <body className={`${dmSans.variable} ${cormorant.variable} font-sans antialiased bg-[#0D0D0D] text-[#F5F5F0]`}>
         {children}
       </body>
     </html>

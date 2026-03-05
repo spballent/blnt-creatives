@@ -29,10 +29,26 @@ export default function About() {
                 item.style.transform = "translateY(0)";
               }, delay);
             });
+
+            // Animate pull quote: border draws down (500ms), pause 200ms, then text fades in (600ms)
+            const border = el.querySelector<HTMLElement>("[data-quote-border]");
+            const texts = el.querySelectorAll<HTMLElement>("[data-quote-text]");
+            if (border) {
+              setTimeout(() => {
+                border.style.transform = "scaleY(1)";
+              }, 200);
+            }
+            texts.forEach((t) => {
+              setTimeout(() => {
+                t.style.opacity = "1";
+                t.style.transform = "translateX(0)";
+              }, 700); // 200ms initial + 500ms border draw
+            });
+
             observer.disconnect();
           }
         },
-        { threshold: 0, rootMargin: "0px 0px -80px 0px" }
+        { threshold: 0.5 }
       );
       observer.observe(el);
     }, 150);
@@ -102,19 +118,47 @@ export default function About() {
             </div>
           </div>
 
-          {/* ── Right column: watermark ────────────────────────── */}
-          <div
-            data-animate
-            data-delay="200"
-            className="hidden md:flex items-center justify-center select-none"
-            aria-hidden="true"
-          >
-            <span
-              className="text-[clamp(80px,14vw,180px)] font-bold leading-none tracking-tighter"
-              style={{ color: "rgba(0,0,0,0.04)", userSelect: "none" }}
-            >
-              BLNT
-            </span>
+          {/* ── Right column: pull quote ────────────────────────── */}
+          <div className="hidden md:flex items-center justify-center">
+            <div className="relative pl-7">
+              {/* Gradient left border */}
+              <div
+                data-quote-border
+                className="absolute left-0 top-0 w-[3px] h-full origin-top"
+                style={{
+                  background: "linear-gradient(180deg, #E8402A, #F0821A, #E8A020)",
+                  transform: "scaleY(0)",
+                  transition: "transform 0.5s ease-out",
+                }}
+              />
+              {/* Quote text */}
+              <p
+                data-quote-text
+                className="text-[32px] lg:text-[38px] italic leading-snug text-[#0D0D0D]"
+                style={{
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontWeight: 600,
+                  opacity: 0,
+                  transform: "translateX(-16px)",
+                  transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+                }}
+              >
+                &ldquo;No templates. No handoffs. Just real work.&rdquo;
+              </p>
+              {/* Attribution */}
+              <p
+                data-quote-text
+                className="mt-4 text-[13px] font-normal text-[#888880]"
+                style={{
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                  opacity: 0,
+                  transform: "translateX(-16px)",
+                  transition: "opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s",
+                }}
+              >
+                How we work at BLNT Creatives
+              </p>
+            </div>
           </div>
 
         </div>
