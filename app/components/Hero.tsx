@@ -7,19 +7,14 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden bg-white noise-overlay">
-      {/* Subtle warm radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 55%, rgba(232,64,42,0.04) 0%, transparent 70%)",
-        }}
-      />
+    <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden bg-[#0D0D0D] noise-overlay">
 
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-20 pt-28 pb-16 flex flex-col items-center">
         {/* Headline */}
-        <h1 className="animate-fade-in-up text-[38px] sm:text-[46px] md:text-[54px] lg:text-[62px] font-bold leading-[1.1] tracking-tight text-[#0D0D0D] max-w-3xl">
+        <h1
+          className="animate-fade-in-up font-bold leading-[1.1] tracking-tight text-[#F5F5F0] max-w-3xl"
+          style={{ fontSize: "clamp(1.8rem, 5.5vw, 3.875rem)" }}
+        >
           Creative solutions that move{" "}
           <span className="gradient-text">brands forward</span>
         </h1>
@@ -28,7 +23,7 @@ export default function Hero() {
         <div className="animate-fade-in-up-delay-1 gradient-line h-[2px] w-20 mt-7 mb-8" />
 
         {/* Subheading */}
-        <p className="animate-fade-in-up-delay-1 text-[17px] md:text-[19px] text-[#555550] max-w-xl leading-relaxed">
+        <p className="animate-fade-in-up-delay-1 text-[17px] md:text-[19px] text-[#888880] max-w-xl leading-relaxed">
           BLNT Creatives is a small creative studio with a big toolkit.
           We partner with brands to solve problems with thoughtful, creative
           solutions that help them grow. From identity and design to systems
@@ -59,11 +54,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom fade to next section (dark) */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.6))" }}
-      />
     </section>
   );
 }

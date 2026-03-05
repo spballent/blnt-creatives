@@ -184,61 +184,39 @@ export default function Services() {
           className="gradient-line h-[1px] w-12 mb-14 mx-auto"
         />
 
-        {/* ── Icon grid: 2 rows of 3 ───────────────────────────── */}
-        <div data-animate data-delay="300">
-
-          {/* Row 1 */}
-          <div className="grid grid-cols-2 md:grid-cols-3 border border-[#E8E8E8]">
-            {services.slice(0, 3).map((service, i) => (
-              <div
-                key={service.name}
-                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 transition-colors duration-200 ${
-                  activeService === service.name ? "bg-[#FAFAFA]" : ""
-                } ${i < 2 ? "border-r border-[#E8E8E8]" : ""}`}
-                onMouseEnter={() => handleHover(service.name)}
-              >
-                <div className="text-[#0D0D0D]">
-                  <service.Icon />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
-                    style={{ backgroundColor: service.dotColor }}
-                  />
-                  <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
-                    {service.name}
-                  </span>
-                </div>
+        {/* ── Icon grid: 2×3 desktop, 3×2 mobile ─────────────────
+              Border trick: container gets border-t + border-l,
+              each card gets border-r + border-b → perfect grid,
+              no double borders, works at any column count.
+        ──────────────────────────────────────────────────────── */}
+        <div
+          data-animate
+          data-delay="300"
+          className="grid grid-cols-2 md:grid-cols-3 border-t border-l border-[#E8E8E8]"
+        >
+          {services.map((service) => (
+            <div
+              key={service.name}
+              className={`service-icon-card border-r border-b border-[#E8E8E8] bg-white p-8 flex flex-col items-center justify-center text-center gap-4 transition-colors duration-200 ${
+                activeService === service.name ? "bg-[#FAFAFA]" : ""
+              }`}
+              onMouseEnter={() => handleHover(service.name)}
+              onClick={() => handleHover(service.name)}
+            >
+              <div className="text-[#0D0D0D]">
+                <service.Icon />
               </div>
-            ))}
-          </div>
-
-          {/* Row 2 */}
-          <div className="grid grid-cols-2 md:grid-cols-3 border-l border-r border-b border-[#E8E8E8]">
-            {services.slice(3).map((service, i) => (
-              <div
-                key={service.name}
-                className={`service-icon-card bg-white p-8 flex flex-col items-center text-center gap-4 transition-colors duration-200 ${
-                  activeService === service.name ? "bg-[#FAFAFA]" : ""
-                } ${i < 2 ? "border-r border-[#E8E8E8]" : ""}`}
-                onMouseEnter={() => handleHover(service.name)}
-              >
-                <div className="text-[#0D0D0D]">
-                  <service.Icon />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
-                    style={{ backgroundColor: service.dotColor }}
-                  />
-                  <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
-                    {service.name}
-                  </span>
-                </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
+                  style={{ backgroundColor: service.dotColor }}
+                />
+                <span className="text-[14px] font-semibold text-[#0D0D0D] leading-snug">
+                  {service.name}
+                </span>
               </div>
-            ))}
-          </div>
-
+            </div>
+          ))}
         </div>
 
         {/* ── Hover description panel ────────────────────────── */}

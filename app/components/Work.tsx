@@ -101,7 +101,7 @@ export default function Work() {
             {["Workflow Optimization", "Digital Product"].map((tag) => (
               <span
                 key={tag}
-                className="px-4 py-1.5 rounded-full border border-white/10 text-xs text-[#888880] font-medium tracking-wide"
+                className="px-4 py-1.5 rounded-full border border-white/25 bg-white/[0.07] text-xs text-[#C8C8C0] font-medium tracking-wide"
               >
                 {tag}
               </span>
