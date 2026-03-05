@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     "BLNT Creatives is a small creative agency combining strategy, design, and technology to help brands solve real problems.",
   icons: {
     icon: "/BLNT_Logo_R2-02.png",
+    apple: "/BLNT_Logo_R2-02.png",
+  },
+  openGraph: {
+    title: "BLNT Creatives — Creative Solutions Agency",
+    description:
+      "BLNT Creatives is a small creative agency combining strategy, design, and technology to help brands solve real problems.",
+    images: [{ url: "/BLNT_Logo_R2-01.png" }],
   },
 };
 
