@@ -112,12 +112,11 @@ export default function About() {
           {/* ── Right column: pull quote ────────────────────────── */}
           <div className="hidden md:flex items-center justify-center">
             <div className="relative pl-7">
-              {/* Gradient left border */}
+              {/* Orange left border */}
               <div
                 data-quote-border
-                className="absolute left-0 top-0 w-[3px] h-full origin-top"
+                className="absolute left-0 top-0 w-[2px] h-full origin-top bg-[#E8402A]"
                 style={{
-                  background: "linear-gradient(180deg, #E8402A, #F0821A, #E8A020)",
                   transform: "scaleY(0)",
                   transition: "transform 0.5s ease-out",
                 }}
@@ -133,19 +132,7 @@ export default function About() {
                   transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
                 }}
               >
-                &ldquo;No templates. No handoffs. Just real work.&rdquo;
-              </p>
-              {/* Attribution */}
-              <p
-                data-quote-text
-                className="mt-4 text-[13px] font-normal text-[#555550]"
-                style={{
-                  opacity: 0,
-                  transform: "translateX(-16px)",
-                  transition: "opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s",
-                }}
-              >
-                How we work at BLNT Creatives
+                &ldquo;No templates. No handoffs. Just real&nbsp;work.&rdquo;
               </p>
             </div>
           </div>

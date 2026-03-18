@@ -117,7 +117,7 @@ const services = [
     name: "Workflow Optimization",
     Icon: WorkflowIcon,
     description:
-      "If your team is spending more time managing the process than doing the work, something's off. We come in, find where things are getting stuck, and help you build something that actually flows.",
+      "If your team is spending more time managing the process than doing the work, something\u2019s off. We come in, find where things are getting stuck, and help you build something that actually\u00a0flows.",
   },
   {
     name: "Community Management",

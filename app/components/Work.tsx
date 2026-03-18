@@ -112,14 +112,14 @@ export default function Work() {
               BuildQuote.io
             </h3>
             <p className="text-[#888880] text-[17px] leading-relaxed mb-8">
-              We built BuildQuote.io from the ground up — a professional
+              We built <a href="https://buildquote.io" target="_blank" rel="noopener noreferrer" className="text-[#F5F5F0] hover:text-[#E8402A] transition-colors duration-200 border-b border-white/[0.15] hover:border-[#E8402A]/40">BuildQuote.io</a> from the ground up — a professional
               quoting platform designed specifically for contractors. From
               brand identity to full product development, we created a
               streamlined tool that helps contractors create, manage, and
               send polished quotes faster.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["Brand Design", "Digital Product", "Consulting"].map((tag) => (
+              {["Digital Product", "Full-Stack Dev", "SaaS"].map((tag) => (
                 <span
                   key={tag}
                   className="px-4 py-1.5 rounded-sm border border-white/[0.1] bg-white/[0.04] text-xs text-[#888880] font-medium tracking-wide"
