@@ -148,8 +148,7 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="py-20 md:py-[120px] bg-[#0D0D0D]"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      className="py-24 md:py-32 bg-[#0D0D0D] border-t border-white/[0.08]"
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
 
@@ -157,7 +156,7 @@ export default function Services() {
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+          className="text-[#E8402A] text-xs font-semibold tracking-[0.2em] uppercase mb-4"
         >
           How We Help
         </p>
@@ -166,17 +165,10 @@ export default function Services() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-5 text-balance"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-14 text-balance"
         >
           Here&apos;s What We Do Best
         </h2>
-
-        {/* Gradient accent line */}
-        <div
-          data-animate
-          data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-14"
-        />
 
         {/* ── Icon grid: 2×3 desktop, 3×2 mobile ─────────────────
               Border trick: container gets border-t + border-l,

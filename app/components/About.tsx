@@ -16,7 +16,6 @@ export default function About() {
       item.style.transition = "opacity 0.9s ease-out, transform 0.9s ease-out";
     });
 
-    // Delay observer so browser paints opacity:0 before it can fire
     let observer: IntersectionObserver;
     const timer = setTimeout(() => {
       observer = new IntersectionObserver(
@@ -30,7 +29,6 @@ export default function About() {
               }, delay);
             });
 
-            // Animate pull quote: border draws down (500ms), pause 200ms, then text fades in (600ms)
             const border = el.querySelector<HTMLElement>("[data-quote-border]");
             const texts = el.querySelectorAll<HTMLElement>("[data-quote-text]");
             if (border) {
@@ -42,7 +40,7 @@ export default function About() {
               setTimeout(() => {
                 t.style.opacity = "1";
                 t.style.transform = "translateX(0)";
-              }, 700); // 200ms initial + 500ms border draw
+              }, 700);
             });
 
             observer.disconnect();
@@ -63,8 +61,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="relative py-20 md:py-[120px] bg-white overflow-hidden"
-      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
+      className="relative py-24 md:py-32 bg-[#0D0D0D] overflow-hidden border-t border-white/[0.08]"
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
@@ -74,7 +71,7 @@ export default function About() {
             <p
               data-animate
               data-delay="0"
-              className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+              className="text-[#E8402A] text-xs font-semibold tracking-[0.2em] uppercase mb-4"
             >
               What We Do
             </p>
@@ -82,22 +79,16 @@ export default function About() {
             <h2
               data-animate
               data-delay="100"
-              className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-balance"
+              className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-8 text-balance"
             >
               We&apos;re Problem<br className="hidden md:block" /> Solvers First
             </h2>
 
-            <div
-              data-animate
-              data-delay="200"
-              className="gradient-line h-[1px] w-12 mb-8"
-            />
-
             <div className="space-y-5">
               <p
                 data-animate
-                data-delay="300"
-                className="text-[#555550] text-[17px] leading-relaxed"
+                data-delay="200"
+                className="text-[#888880] text-[17px] leading-relaxed"
               >
                 BLNT Creatives started with a simple idea. Most business
                 problems have creative solutions, you just have to be willing
@@ -107,8 +98,8 @@ export default function About() {
               </p>
               <p
                 data-animate
-                data-delay="400"
-                className="text-[#555550] text-[17px] leading-relaxed"
+                data-delay="300"
+                className="text-[#888880] text-[17px] leading-relaxed"
               >
                 We work closely with the people we take on. No handoffs to a
                 junior team, no cookie-cutter playbooks. Just honest work,
@@ -134,9 +125,8 @@ export default function About() {
               {/* Quote text */}
               <p
                 data-quote-text
-                className="text-[32px] lg:text-[38px] italic leading-snug text-[#0D0D0D]"
+                className="text-[32px] lg:text-[38px] italic leading-snug text-[#F5F5F0]"
                 style={{
-                  fontFamily: "var(--font-dm-serif), serif",
                   fontWeight: 400,
                   opacity: 0,
                   transform: "translateX(-16px)",
@@ -148,9 +138,8 @@ export default function About() {
               {/* Attribution */}
               <p
                 data-quote-text
-                className="mt-4 text-[13px] font-normal text-[#888880]"
+                className="mt-4 text-[13px] font-normal text-[#555550]"
                 style={{
-                  fontFamily: "var(--font-dm-sans), sans-serif",
                   opacity: 0,
                   transform: "translateX(-16px)",
                   transition: "opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s",

@@ -2,43 +2,87 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D0D0D]">
-      {/* Gradient top line */}
-      <div className="gradient-line h-[2px] w-full" />
+    <footer className="bg-[#0D0D0D] border-t border-white/[0.08]">
 
-      <div className="max-w-[1100px] mx-auto px-6 md:px-20 py-10">
-        {/* Desktop: 3-column | Mobile: stacked centered */}
-        <div className="flex flex-col items-center gap-6 md:grid md:grid-cols-3 md:items-center md:gap-0">
+      <div className="max-w-[1100px] mx-auto px-6 md:px-20 py-16">
+        {/* Main grid: logo+tagline | nav columns */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto] gap-10 md:gap-16 items-start">
 
-          {/* Left: full wordmark */}
-          <div className="flex items-center md:justify-start justify-center">
-            {/*
-              Same crop technique: render -01 at 1.0× natural (256×168),
-              clip to content region (71×40 natural px) at 32px visible height.
-              Scale: 32/40 = 0.8 → rendered 205×134, crop left=74, top=52, visible 57×32
-            */}
-            <div style={{ width: 57, height: 32, overflow: "hidden", position: "relative", flexShrink: 0 }}>
-              <div style={{ position: "absolute", width: 205, height: 134, left: -74, top: -52 }}>
-                <Image
-                  src="/BLNT_Logo_R2-01.png"
-                  alt="BLNT Creatives"
-                  width={205}
-                  height={134}
-                  style={{ width: 205, height: 134, display: "block", maxWidth: "none" }}
-                />
+          {/* Left: logo + tagline */}
+          <div>
+            <div className="flex items-center mb-4">
+              <div style={{ width: 57, height: 32, overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                <div style={{ position: "absolute", width: 205, height: 134, left: -74, top: -52 }}>
+                  <Image
+                    src="/BLNT_Logo_R2-01.png"
+                    alt="BLNT Creatives"
+                    width={205}
+                    height={134}
+                    style={{ width: 205, height: 134, display: "block", maxWidth: "none" }}
+                  />
+                </div>
               </div>
             </div>
+            <p className="text-[#888880] text-sm leading-relaxed max-w-[260px]">
+              Design, strategy, and systems thinking<br />
+              for brands that care about the work.
+            </p>
           </div>
 
-          {/* Center: tagline */}
-          <p className="text-[#888880] text-sm text-center">
-            Creative solutions for complex problems.
-          </p>
+          {/* Navigate column */}
+          <div>
+            <p className="text-[#555550] text-xs font-semibold tracking-[0.15em] uppercase mb-4">
+              Navigate
+            </p>
+            <ul className="space-y-2.5">
+              {[
+                { label: "About", href: "#about" },
+                { label: "Services", href: "#services" },
+                { label: "Work", href: "#work" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-[#888880] hover:text-[#F5F5F0] text-sm transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Right: copyright */}
-          <p className="text-[#555550] text-xs text-center md:text-right">
-            © 2025 BLNT Creatives. All rights reserved.
-          </p>
+          {/* Connect column */}
+          <div>
+            <p className="text-[#555550] text-xs font-semibold tracking-[0.15em] uppercase mb-4">
+              Connect
+            </p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href="mailto:hello@blntcreatives.com"
+                  className="text-[#888880] hover:text-[#F5F5F0] text-sm transition-colors duration-200"
+                >
+                  Email
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="text-[#888880] hover:text-[#F5F5F0] text-sm transition-colors duration-200"
+                >
+                  Let&apos;s Talk
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Copyright */}
+          <div className="md:text-right md:self-end">
+            <p className="text-[#555550] text-xs">
+              &copy; 2026 BLNT Creatives
+            </p>
+          </div>
 
         </div>
       </div>

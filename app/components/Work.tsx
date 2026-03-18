@@ -39,8 +39,7 @@ export default function Work() {
     <section
       id="work"
       ref={ref}
-      className="py-20 md:py-[120px] bg-white"
-      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
+      className="py-24 md:py-32 bg-[#0D0D0D] border-t border-white/[0.08]"
     >
       <div className="max-w-[1100px] mx-auto px-6 md:px-20">
 
@@ -48,7 +47,7 @@ export default function Work() {
         <p
           data-animate
           data-delay="0"
-          className="gradient-text text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+          className="text-[#E8402A] text-xs font-semibold tracking-[0.2em] uppercase mb-4"
         >
           Early Work
         </p>
@@ -57,67 +56,82 @@ export default function Work() {
         <h2
           data-animate
           data-delay="100"
-          className="text-4xl md:text-5xl font-bold text-[#0D0D0D] leading-tight mb-5 text-balance"
+          className="text-4xl md:text-5xl font-bold text-[#F5F5F0] leading-tight mb-14 text-balance"
         >
           We&apos;re New. Here&apos;s<br className="hidden md:block" /> Where We&apos;re Starting.
         </h2>
 
-        {/* Gradient accent line */}
-        <div
-          data-animate
-          data-delay="200"
-          className="gradient-line h-[1px] w-12 mb-14"
-        />
+        {/* Project cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {/* Featured project card */}
-        <div
-          data-animate
-          data-delay="300"
-          className="bg-[#F5F5F5] border border-black/[0.07] rounded-2xl p-8 md:p-12 max-w-2xl"
-        >
-          {/* Status badge */}
-          <div className="flex items-center gap-2.5 mb-6">
-            <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0" />
-            <span className="text-emerald-600 text-xs font-semibold tracking-[0.15em] uppercase">
-              In Progress
-            </span>
-          </div>
-
-          {/* Title */}
-          <h3 className="text-2xl md:text-3xl font-semibold text-[#0D0D0D] mb-4 leading-snug">
-            Workflow Overhaul &amp; Digital Foundation
-          </h3>
-
-          {/* Description */}
-          <p className="text-[#555550] text-[17px] leading-relaxed mb-8">
-            We&apos;re currently working with a growing brand to untangle their
-            internal processes and set them up for a digital product launch.
-            Early days, but already making a real difference in how their team
-            operates day to day.
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-3">
-            {["Workflow Optimization", "Digital Product"].map((tag) => (
-              <span
-                key={tag}
-                className="px-4 py-1.5 rounded-full border border-black/[0.15] bg-black/[0.04] text-xs text-[#444440] font-medium tracking-wide"
-              >
-                {tag}
+          {/* Team Forman Experience */}
+          <div
+            data-animate
+            data-delay="200"
+            className="bg-[#141414] border border-white/[0.08] rounded-sm p-8 md:p-10"
+          >
+            <div className="flex items-center gap-2.5 mb-6">
+              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0" />
+              <span className="text-emerald-400 text-xs font-semibold tracking-[0.15em] uppercase">
+                In Progress
               </span>
-            ))}
+            </div>
+            <h3 className="text-2xl md:text-[28px] font-semibold text-[#F5F5F0] mb-4 leading-snug">
+              Team Forman Experience
+            </h3>
+            <p className="text-[#888880] text-[17px] leading-relaxed mb-8">
+              Building a custom CRM system and scalable digital product
+              for a growing brand. From restructuring internal workflows to
+              laying the technical foundation for their next phase of growth.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {["CRM System", "Digital Product", "Workflow Optimization"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-4 py-1.5 rounded-sm border border-white/[0.1] bg-white/[0.04] text-xs text-[#888880] font-medium tracking-wide"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
+
+          {/* BuildQuote.io */}
+          <div
+            data-animate
+            data-delay="300"
+            className="bg-[#141414] border border-white/[0.08] rounded-sm p-8 md:p-10"
+          >
+            <div className="flex items-center gap-2.5 mb-6">
+              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0" />
+              <span className="text-emerald-400 text-xs font-semibold tracking-[0.15em] uppercase">
+                In Progress
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-[28px] font-semibold text-[#F5F5F0] mb-4 leading-snug">
+              BuildQuote.io
+            </h3>
+            <p className="text-[#888880] text-[17px] leading-relaxed mb-8">
+              We built BuildQuote.io from the ground up — a professional
+              quoting platform designed specifically for contractors. From
+              brand identity to full product development, we created a
+              streamlined tool that helps contractors create, manage, and
+              send polished quotes faster.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {["Brand Design", "Digital Product", "Consulting"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-4 py-1.5 rounded-sm border border-white/[0.1] bg-white/[0.04] text-xs text-[#888880] font-medium tracking-wide"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
 
-        {/* Coming soon */}
-        <p
-          data-animate
-          data-delay="400"
-          className="mt-10 text-[#888880] text-[17px]"
-        >
-          More to share soon. We&apos;re heads down doing good work and the case
-          studies are coming.
-        </p>
 
       </div>
     </section>
