@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 const navLinks = [
   { label: "About",    href: "#about",    id: "about"    },
@@ -58,29 +57,9 @@ export default function Nav() {
             className="flex items-center flex-shrink-0"
             aria-label="BLNT Creatives home"
           >
-            <div
-              className="overflow-hidden flex-shrink-0"
-              style={{ width: 110, height: 66, position: "relative" }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: 360,
-                  height: 236,
-                  left: -126,
-                  top: -86,
-                }}
-              >
-                <Image
-                  src="/BLNT_Logo_R2-01.png"
-                  alt="BLNT Creatives"
-                  width={360}
-                  height={236}
-                  priority
-                  style={{ width: 360, height: 236, display: "block", maxWidth: "none" }}
-                />
-              </div>
-            </div>
+            <span className="text-[20px] font-bold text-[#F5F5F0] tracking-tight">
+              BLNT<span className="text-[#E8402A]">.</span>
+            </span>
           </button>
 
           {/* Desktop links */}

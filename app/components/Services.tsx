@@ -2,61 +2,94 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* ── SVG icons ─────────────────────────────────────────────────── */
-const BrandIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M24 4L44 24L24 44L4 24Z" />
-    <path d="M24 14L34 24L24 34L14 24Z" />
-    <circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none" />
+/* ── SVG icons — accept `active` prop for draw animation ────────── */
+/* Two-layer icon style: base (always visible white) + overlay (orange draw-in) */
+const baseStyle = {
+  stroke: "#F5F5F0",
+  opacity: 0.3,
+};
+
+const overlayStyle = (active: boolean) => ({
+  stroke: "#E8402A",
+  strokeDasharray: 200,
+  strokeDashoffset: active ? 0 : 200,
+  transition: active
+    ? "stroke-dashoffset 1.5s ease-out"
+    : "stroke-dashoffset 0.5s ease-in",
+});
+
+const BrandIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M24 4L44 24L24 44L4 24Z" style={baseStyle} />
+    <path d="M24 14L34 24L24 34L14 24Z" style={baseStyle} />
+    <path d="M24 4L44 24L24 44L4 24Z" style={overlayStyle(active)} />
+    <path d="M24 14L34 24L24 34L14 24Z" style={overlayStyle(active)} />
+    <circle cx="24" cy="24" r="2.5" fill={active ? "#E8402A" : "rgba(245,245,240,0.3)"} stroke="none" style={{ transition: "fill 0.4s ease" }} />
   </svg>
 );
 
-const MarketingIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M7 17H15L31 9V39L15 31H7V17Z" />
-    <line x1="15" y1="31" x2="15" y2="43" />
-    <path d="M35 16C37.5 18.5 39 21.1 39 24C39 26.9 37.5 29.5 35 32" />
+const MarketingIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17H15L31 9V39L15 31H7V17Z" style={baseStyle} />
+    <line x1="15" y1="31" x2="15" y2="43" style={baseStyle} />
+    <path d="M35 16C37.5 18.5 39 21.1 39 24C39 26.9 37.5 29.5 35 32" style={baseStyle} />
+    <path d="M7 17H15L31 9V39L15 31H7V17Z" style={overlayStyle(active)} />
+    <line x1="15" y1="31" x2="15" y2="43" style={overlayStyle(active)} />
+    <path d="M35 16C37.5 18.5 39 21.1 39 24C39 26.9 37.5 29.5 35 32" style={overlayStyle(active)} />
   </svg>
 );
 
-const ConsultingIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="24" cy="24" r="19" />
-    <path d="M24 5V12M24 36V43M5 24H12M36 24H43" />
-    <path d="M31 17L27 25L19 31L23 23L31 17Z" />
+const ConsultingIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="24" cy="24" r="19" style={baseStyle} />
+    <path d="M24 5V12M24 36V43M5 24H12M36 24H43" style={baseStyle} />
+    <path d="M31 17L27 25L19 31L23 23L31 17Z" style={baseStyle} />
+    <circle cx="24" cy="24" r="19" style={overlayStyle(active)} />
+    <path d="M24 5V12M24 36V43M5 24H12M36 24H43" style={overlayStyle(active)} />
+    <path d="M31 17L27 25L19 31L23 23L31 17Z" style={overlayStyle(active)} />
   </svg>
 );
 
-const WorkflowIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="4"  y="7"  width="13" height="10" rx="2" />
-    <rect x="31" y="7"  width="13" height="10" rx="2" />
-    <rect x="17" y="31" width="14" height="10" rx="2" />
-    <path d="M17 12H31" />
-    <path d="M10 17V27C10 29.2 11.8 31 14 31H17" />
-    <path d="M38 17V27C38 29.2 36.2 31 34 31H31" />
+const WorkflowIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4" y="7" width="13" height="10" rx="2" style={baseStyle} />
+    <rect x="31" y="7" width="13" height="10" rx="2" style={baseStyle} />
+    <rect x="17" y="31" width="14" height="10" rx="2" style={baseStyle} />
+    <path d="M17 12H31" style={baseStyle} />
+    <path d="M10 17V27C10 29.2 11.8 31 14 31H17" style={baseStyle} />
+    <path d="M38 17V27C38 29.2 36.2 31 34 31H31" style={baseStyle} />
+    <rect x="4" y="7" width="13" height="10" rx="2" style={overlayStyle(active)} />
+    <rect x="31" y="7" width="13" height="10" rx="2" style={overlayStyle(active)} />
+    <rect x="17" y="31" width="14" height="10" rx="2" style={overlayStyle(active)} />
+    <path d="M17 12H31" style={overlayStyle(active)} />
+    <path d="M10 17V27C10 29.2 11.8 31 14 31H17" style={overlayStyle(active)} />
+    <path d="M38 17V27C38 29.2 36.2 31 34 31H31" style={overlayStyle(active)} />
   </svg>
 );
 
-const CommunityIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="17" cy="19" r="10" />
-    <circle cx="31" cy="19" r="10" />
-    <circle cx="24" cy="32" r="10" />
+const CommunityIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5">
+    <circle cx="17" cy="19" r="10" style={baseStyle} />
+    <circle cx="31" cy="19" r="10" style={baseStyle} />
+    <circle cx="24" cy="32" r="10" style={baseStyle} />
+    <circle cx="17" cy="19" r="10" style={overlayStyle(active)} />
+    <circle cx="31" cy="19" r="10" style={overlayStyle(active)} />
+    <circle cx="24" cy="32" r="10" style={overlayStyle(active)} />
   </svg>
 );
 
-const PackageIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    {/* Front face */}
-    <rect x="5" y="20" width="28" height="23" rx="2" />
-    {/* Right face */}
-    <path d="M33 20L43 14V37L33 43" />
-    {/* Top face */}
-    <path d="M5 20L15 14H43L33 20Z" />
-    {/* Label lines on front */}
-    <line x1="10" y1="30" x2="28" y2="30" />
-    <line x1="10" y1="35" x2="21" y2="35" />
+const PackageIcon = ({ active }: { active: boolean }) => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="20" width="28" height="23" rx="2" style={baseStyle} />
+    <path d="M33 20L43 14V37L33 43" style={baseStyle} />
+    <path d="M5 20L15 14H43L33 20Z" style={baseStyle} />
+    <line x1="10" y1="30" x2="28" y2="30" style={baseStyle} />
+    <line x1="10" y1="35" x2="21" y2="35" style={baseStyle} />
+    <rect x="5" y="20" width="28" height="23" rx="2" style={overlayStyle(active)} />
+    <path d="M33 20L43 14V37L33 43" style={overlayStyle(active)} />
+    <path d="M5 20L15 14H43L33 20Z" style={overlayStyle(active)} />
+    <line x1="10" y1="30" x2="28" y2="30" style={overlayStyle(active)} />
+    <line x1="10" y1="35" x2="21" y2="35" style={overlayStyle(active)} />
   </svg>
 );
 
@@ -170,42 +203,34 @@ export default function Services() {
           Here&apos;s What We Do Best
         </h2>
 
-        {/* ── Icon grid: 2×3 desktop, 3×2 mobile ─────────────────
-              Border trick: container gets border-t + border-l,
-              each card gets border-r + border-b → perfect grid,
-              no double borders, works at any column count.
-        ──────────────────────────────────────────────────────── */}
+        {/* ── Icon grid ─────────────────────────────────────────── */}
         <div
           data-animate
           data-delay="300"
           className="grid grid-cols-2 md:grid-cols-3 border-t border-l border-white/[0.08]"
         >
-          {services.map((service) => (
-            <div
-              key={service.name}
-              className={`service-icon-card border-r border-b border-white/[0.08] bg-[#141414] p-8 flex flex-col items-center justify-center text-center gap-4 transition-colors duration-200 ${
-                activeService === service.name ? "!bg-[#1C1C1C]" : ""
-              }`}
-              onMouseEnter={() => handleHover(service.name)}
-              onClick={() => handleHover(service.name)}
-            >
-              <div className="text-[#F5F5F0]">
-                <service.Icon />
-              </div>
-              <div className="flex items-center gap-2">
-                <span
-                  className="accent-dot w-[7px] h-[7px] rounded-full flex-shrink-0"
-                  style={{
-                    backgroundColor: activeService === service.name ? "#E8402A" : "#555555",
-                    transition: "background-color 200ms ease",
-                  }}
-                />
-                <span className="text-[14px] font-semibold text-[#F5F5F0] leading-snug">
+          {services.map((service) => {
+            const isActive = activeService === service.name;
+            return (
+              <div
+                key={service.name}
+                className={`service-icon-card border-r border-b border-white/[0.08] bg-[#141414] p-8 flex flex-col items-center justify-center text-center gap-4 transition-colors duration-200 ${
+                  isActive ? "!bg-[#1C1C1C]" : ""
+                }`}
+                onMouseEnter={() => handleHover(service.name)}
+                onClick={() => handleHover(service.name)}
+              >
+                <div className="text-[#F5F5F0]">
+                  <service.Icon active={isActive} />
+                </div>
+                <span className={`text-[14px] font-semibold leading-snug transition-colors duration-300 ${
+                  isActive ? "text-[#E8402A]" : "text-[#F5F5F0]"
+                }`}>
                   {service.name}
                 </span>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ── Hover description panel ────────────────────────── */}

@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-[#0D0D0D] noise-overlay grid-overlay">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-x-hidden bg-[#0D0D0D] noise-overlay grid-overlay">
 
       {/* ── Floating geometric illustration ────────────────── */}
       <div
@@ -122,15 +122,16 @@ export default function Hero() {
 
         {/* Headline */}
         <h1
-          className="animate-fade-in-up font-bold leading-[1.08] tracking-tight text-[#F5F5F0] max-w-4xl"
-          style={{ fontSize: "clamp(2.5rem, 7vw, 4.5rem)" }}
+          className="animate-fade-in-up font-medium leading-[1.05] tracking-tight text-[#F5F5F0] max-w-4xl overflow-visible"
+          style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
         >
           Creative solutions that move{" "}
-          <span className="text-[#E8402A]">brands&nbsp;forward.</span>
+          <em className="italic text-[#E8402A]">brands</em>{" "}
+          forward<span className="text-[#E8402A]">.</span>
         </h1>
 
         {/* Subheading */}
-        <p className="animate-fade-in-up-delay-1 text-[17px] md:text-[19px] text-[#888880] max-w-xl leading-relaxed mt-8">
+        <p className="animate-fade-in-up-delay-1 text-[15px] md:text-[17px] font-light text-[#888880] max-w-[480px] leading-relaxed mt-8">
           A small studio with a big toolkit. We partner with brands
           to solve problems with thoughtful solutions that
           help them&nbsp;grow.

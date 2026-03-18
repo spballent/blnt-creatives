@@ -70,10 +70,10 @@ export default function Work() {
             data-delay="200"
             className="bg-[#141414] border border-white/[0.08] rounded-sm p-8 md:p-10"
           >
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0" />
-              <span className="text-emerald-400 text-xs font-semibold tracking-[0.15em] uppercase">
-                In Progress
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-4 h-[2px] bg-[#E8402A] inline-block flex-shrink-0" />
+              <span className="text-[#888880] text-xs font-medium tracking-[0.15em] uppercase">
+                Active
               </span>
             </div>
             <h3 className="text-2xl md:text-[28px] font-semibold text-[#F5F5F0] mb-4 leading-snug">
@@ -102,10 +102,10 @@ export default function Work() {
             data-delay="300"
             className="bg-[#141414] border border-white/[0.08] rounded-sm p-8 md:p-10"
           >
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500 inline-block flex-shrink-0" />
-              <span className="text-emerald-400 text-xs font-semibold tracking-[0.15em] uppercase">
-                In Progress
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-4 h-[2px] bg-[#E8402A] inline-block flex-shrink-0" />
+              <span className="text-[#888880] text-xs font-medium tracking-[0.15em] uppercase">
+                Active
               </span>
             </div>
             <h3 className="text-2xl md:text-[28px] font-semibold text-[#F5F5F0] mb-4 leading-snug">

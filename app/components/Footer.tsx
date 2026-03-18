@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Footer() {
   return (
     <footer className="bg-[#0D0D0D] border-t border-white/[0.08]">
@@ -10,18 +8,10 @@ export default function Footer() {
 
           {/* Left: logo + tagline */}
           <div>
-            <div className="flex items-center mb-4">
-              <div style={{ width: 57, height: 32, overflow: "hidden", position: "relative", flexShrink: 0 }}>
-                <div style={{ position: "absolute", width: 205, height: 134, left: -74, top: -52 }}>
-                  <Image
-                    src="/BLNT_Logo_R2-01.png"
-                    alt="BLNT Creatives"
-                    width={205}
-                    height={134}
-                    style={{ width: 205, height: 134, display: "block", maxWidth: "none" }}
-                  />
-                </div>
-              </div>
+            <div className="mb-4">
+              <span className="text-[20px] font-bold text-[#F5F5F0] tracking-tight">
+                BLNT<span className="text-[#E8402A]">.</span>
+              </span>
             </div>
             <p className="text-[#888880] text-sm leading-relaxed max-w-[260px]">
               Design, strategy, and systems thinking<br />
