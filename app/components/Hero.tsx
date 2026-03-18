@@ -123,7 +123,7 @@ export default function Hero() {
         {/* Headline */}
         <h1
           className="animate-fade-in-up font-medium leading-[1.05] tracking-tight text-[#F5F5F0] max-w-4xl overflow-visible"
-          style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+          style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)" }}
         >
           Creative solutions that move{" "}
           <em className="italic text-[#E8402A]">brands</em>{" "}
