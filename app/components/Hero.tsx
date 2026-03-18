@@ -14,105 +14,72 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-x-hidden bg-[#0D0D0D] noise-overlay grid-overlay">
 
-      {/* ── Floating geometric illustration ────────────────── */}
-      <div
-        className="hidden md:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-[550px] h-[550px] z-[2]"
-        style={{ animation: "heroFloat 20s ease-in-out infinite" }}
-      >
-        <svg
-          viewBox="0 0 500 500"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-          style={{ transform: "rotate(-8deg)" }}
+      {/* ── Floating geometric illustration — independent layers ── */}
+      <div className="hidden md:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-[550px] h-[550px] z-[2]">
+
+        {/* Layer 1: Tilted square — slow drift */}
+        <div
+          className="absolute inset-0"
+          style={{ animation: "heroFloat 20s ease-in-out infinite" }}
         >
-          {/* Large outer diamond */}
-          <rect
-            x="250" y="20" width="220" height="220"
-            transform="rotate(45 360 130)"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="1"
-          />
-          {/* Inner diamond */}
-          <rect
-            x="280" y="55" width="150" height="150"
-            transform="rotate(45 355 130)"
-            stroke="rgba(255,255,255,0.04)"
-            strokeWidth="0.8"
-          />
+          <svg viewBox="0 0 500 500" fill="none" className="w-full h-full">
+            <rect
+              x="200" y="160" width="180" height="180" rx="2"
+              stroke="rgba(255,255,255,0.14)"
+              strokeWidth="1.2"
+              fill="none"
+              transform="rotate(-10 290 250)"
+            />
+          </svg>
+        </div>
 
-          {/* Red diagonal lines — creative energy */}
-          <line x1="80" y1="100" x2="460" y2="440" stroke="#E8402A" strokeWidth="0.8" opacity="0.35" />
-          <line x1="160" y1="40" x2="490" y2="340" stroke="#E8402A" strokeWidth="0.8" opacity="0.25" />
-          <line x1="60" y1="250" x2="380" y2="490" stroke="#E8402A" strokeWidth="0.6" opacity="0.2" />
+        {/* Layer 2: Red diagonal — slightly faster, offset timing */}
+        <div
+          className="absolute inset-0"
+          style={{ animation: "heroFloat 15s ease-in-out 2s infinite reverse" }}
+        >
+          <svg viewBox="0 0 500 500" fill="none" className="w-full h-full">
+            <line x1="140" y1="120" x2="420" y2="400" stroke="#E8402A" strokeWidth="1" opacity="0.3" />
+          </svg>
+        </div>
 
-          {/* Central geometric form — overlapping shapes */}
-          {/* Large tilted square */}
-          <rect
-            x="190" y="160" width="200" height="200" rx="4"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth="1"
-            fill="rgba(255,255,255,0.015)"
-            transform="rotate(-12 290 260)"
-          />
-          {/* Overlapping circle */}
-          <circle
-            cx="330" cy="240" r="90"
-            stroke="rgba(255,255,255,0.07)"
-            strokeWidth="0.8"
-            fill="none"
-          />
-          {/* Smaller offset square */}
-          <rect
-            x="260" y="200" width="130" height="130" rx="3"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="0.8"
-            fill="rgba(13,13,13,0.6)"
-            transform="rotate(8 325 265)"
-          />
+        {/* Layer 3: Connected nodes — own rhythm */}
+        <div
+          className="absolute inset-0"
+          style={{ animation: "heroFloat 18s ease-in-out 4s infinite" }}
+        >
+          <svg viewBox="0 0 500 500" fill="none" className="w-full h-full">
+            <circle cx="240" cy="200" r="3" fill="rgba(255,255,255,0.3)" />
+            <circle cx="360" cy="210" r="3" fill="rgba(255,255,255,0.25)" />
+            <circle cx="310" cy="320" r="3" fill="rgba(255,255,255,0.3)" />
+            <line x1="240" y1="200" x2="360" y2="210" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8" />
+            <line x1="360" y1="210" x2="310" y2="320" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8" />
+            <line x1="310" y1="320" x2="240" y2="200" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8" />
+          </svg>
+        </div>
 
-          {/* Triangle accent */}
-          <polygon
-            points="350,150 420,290 280,290"
-            stroke="rgba(255,255,255,0.05)"
-            strokeWidth="0.8"
-            fill="none"
-          />
+        {/* Layer 4: Small diamond — slow counter-rotation */}
+        <div
+          className="absolute inset-0"
+          style={{ animation: "heroFloat 22s ease-in-out 1s infinite reverse" }}
+        >
+          <svg viewBox="0 0 500 500" fill="none" className="w-full h-full">
+            <rect
+              x="300" y="100" width="80" height="80"
+              transform="rotate(45 340 140)"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="1"
+              fill="none"
+            />
+          </svg>
+        </div>
 
-          {/* Connection nodes */}
-          <circle cx="230" cy="200" r="3.5" fill="rgba(255,255,255,0.25)" />
-          <circle cx="380" cy="180" r="3" fill="rgba(255,255,255,0.2)" />
-          <circle cx="310" cy="330" r="3.5" fill="rgba(255,255,255,0.25)" />
-          <circle cx="400" cy="310" r="2.5" fill="rgba(255,255,255,0.15)" />
-
-          {/* Connection lines between nodes */}
-          <line x1="230" y1="200" x2="380" y2="180" stroke="rgba(255,255,255,0.06)" strokeWidth="0.6" />
-          <line x1="380" y1="180" x2="400" y2="310" stroke="rgba(255,255,255,0.05)" strokeWidth="0.6" />
-          <line x1="400" y1="310" x2="310" y2="330" stroke="rgba(255,255,255,0.06)" strokeWidth="0.6" />
-          <line x1="310" y1="330" x2="230" y2="200" stroke="rgba(255,255,255,0.05)" strokeWidth="0.6" />
-
-          {/* Orange accent bar */}
-          <rect x="275" y="270" width="50" height="4" rx="2" fill="#E8402A" opacity="0.5" transform="rotate(8 300 272)" />
-
-          {/* EST. 2026 */}
-          <text
-            x="300" y="420"
-            fill="rgba(255,255,255,0.12)"
-            fontSize="11"
-            fontFamily="monospace"
-            letterSpacing="2"
-          >
-            EST. 2026
-          </text>
-
-          {/* Pulsing accent dots */}
-          <circle cx="180" cy="340" r="3" fill="#E8402A" opacity="0.6">
-            <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="440" cy="400" r="2.5" fill="#E8402A" opacity="0.4">
+        {/* Accent dots — static position, pulsing */}
+        <svg viewBox="0 0 500 500" fill="none" className="absolute inset-0 w-full h-full">
+          <circle cx="200" cy="340" r="2.5" fill="#E8402A" opacity="0.4">
             <animate attributeName="opacity" values="0.4;0.15;0.4" dur="4s" repeatCount="indefinite" />
           </circle>
-          <circle cx="350" cy="130" r="2" fill="#E8402A" opacity="0.3">
+          <circle cx="380" cy="150" r="2" fill="#E8402A" opacity="0.3">
             <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3.5s" repeatCount="indefinite" />
           </circle>
         </svg>
@@ -126,8 +93,7 @@ export default function Hero() {
           style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)" }}
         >
           Creative solutions that move{" "}
-          <em className="italic text-[#E8402A]">brands</em>{" "}
-          forward<span className="text-[#E8402A]">.</span>
+          <span className="whitespace-nowrap"><em className="italic text-[#E8402A]">brands</em>{" "}forward<span className="text-[#E8402A]">.</span></span>
         </h1>
 
         {/* Subheading */}
