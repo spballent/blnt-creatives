@@ -248,7 +248,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="gradient-btn w-full py-4 rounded-[2px] text-white font-semibold text-[17px] tracking-wide disabled:opacity-60"
+                  className="w-full py-4 rounded-[2px] bg-[#E8402A] hover:bg-[#d63a25] transition-colors duration-200 text-white font-semibold text-[17px] tracking-wide disabled:opacity-60"
                 >
                   {status === "submitting" ? "Sending\u2026" : "Send It"}
                 </button>
