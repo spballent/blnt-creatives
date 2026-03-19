@@ -113,7 +113,7 @@ export default function Contact() {
         <div data-animate data-delay="300" className="flex items-center gap-10 mb-0">
           <button
             onClick={() => setShowForm(!showForm)}
-            className="px-10 py-4 bg-[#E8402A] hover:bg-[#d63a25] rounded-[2px] text-white font-semibold text-base tracking-wide transition-all duration-200"
+            className="px-10 py-4 bg-[#E8402A] hover:bg-[#d63a25] rounded-[2px] text-white font-semibold text-base tracking-wide transition-all duration-200 whitespace-nowrap"
           >
             {showForm ? "Close Form" : "Let\u2019s Talk"}
           </button>
